@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Start Driving</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbi58PHdbyKHgPk6DOKqVplHDqxOujUJY&libraries=places&callback=initGoogleReviews"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">fresh start driving</div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop>
+            <source src="video/driving-footage.mp4" type="video/mp4">
+            <source src="video/driving-footage.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1>Fresh Start Driving</h1>
+            <p class="subtitle">Your route to success starts here</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="content">
+                        <h3>[TEXT]</h3>
+                        <!-- Add your content here -->
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="content">
+                        <h3>[TEXT]</h3>
+                        <!-- Add your content here -->
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="content">
+                        <h3>[TEXT]</h3>
+                        <!-- Add your content here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Reviews Section -->
+    <section class="section reviews-section">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="google-reviews-container">
+                <div class="google-reviews-widget">
+                    <!-- Google Reviews will be loaded here -->
+                    <div id="google-reviews" data-place-id="ChIJOR5PO7be-2wRNK-N341tVB0">
+                        <div class="reviews-loading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading Google Reviews...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="google-rating-summary">
+                    <div class="rating-display">
+                        <div class="stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <span class="rating-score">5.0</span>
+                    </div>
+                    <p class="rating-text">Based on Google Reviews</p>
+                    <a href="https://www.google.com/maps/place/?q=place_id:ChIJOR5PO7be-2wRNK-N341tVB0" target="_blank" class="google-link">
+                        View all reviews on Google
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">about us</h2>
+            <p class="section-intro">At Fresh Start Driving Academy we pride ourselves on empowering Safe, Confident Drivers and we are committed to providing top-quality driver education that emphasizes safety, confidence, and skill. We deliver comprehensive training programs tailored to meet the needs of new drivers, teens, adults, and seniors. Whether you're preparing for your first driving test or looking to refresh your skills, we offer flexible lessons, up-to-date curriculum, and real-world driving experience to help you succeed on the road.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Manual Lessons</h3>
+                    <p><!-- Add your manual lesson description here --></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Automatic Lessons</h3>
+                    <p><!-- Add your automatic lesson description here --></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Intensive Courses</h3>
+                    <p><!-- Add your intensive course description here --></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Refresher Lessons</h3>
+                    <p><!-- Add your refresher lesson description here --></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Pass Plus</h3>
+                    <p><!-- Add your Pass Plus description here --></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Mock Tests</h3>
+                    <p><!-- Add your mock test description here --></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Success</h2>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="number" data-target="0">-100</span>
+                    <span class="label">% Pass Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="number" data-target="0">-100</span>
+                    <span class="label">Happy Students</span>
+                </div>
+                <div class="stat">
+                    <span class="number" data-target="0">-100</span>
+                    <span class="label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="number" data-target="0">-100</span>
+                    <span class="label">Star Rating</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title">What Our Students Say</h2>
+            
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p class="quote">"<!-- Add testimonial quote here -->"</p>
+                    <p class="author">- <!-- Student name --></p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="quote">"<!-- Add testimonial quote here -->"</p>
+                    <p class="author">- <!-- Student name --></p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="quote">"<!-- Add testimonial quote here -->"</p>
+                    <p class="author">- <!-- Student name --></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Journey?</h2>
+            <p><!-- Add your call to action description here --></p>
+            <a href="#contact" class="cta-button">Book Your First Lesson</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="manual">Manual Lessons</option>
+                                <option value="automatic">Automatic Lessons</option>
+                                <option value="intensive">Intensive Course</option>
+                                <option value="refresher">Refresher Lessons</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your driving experience and what you're looking for..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Our Location</h2>
+            <p class="section-intro">We provide driving lessons within a 15-mile radius of our location</p>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492721.8841560716!2d-6.409823487500002!3d52.4012622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6cfbdeb63b4f1e39%3A0x1d546d8ddf8daf34!2sFresh%20Start%20Driving%20Academy!5e0!3m2!1sen!2suk!4v1761170574640!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            
+            <div class="service-area">
+                <h3 class="section-subtitle">Service Area Coverage</h3>
+                <p>We proudly serve students within a <strong>15-mile radius</strong> of our academy location. This includes surrounding towns, villages, and urban areas to ensure convenient access to quality driving instruction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Manual Lessons</a></li>
+                        <li><a href="#">Automatic Lessons</a></li>
+                        <li><a href="#">Intensive Courses</a></li>
+                        <li><a href="#">Pass Plus</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><!-- Add your contact information and description here --></p>
+                    <ul>
+                        <li><a href="#">Phone:</a><phone>(+44)07780707120</phone></li>
+                        <li><a href="#">Email:</a> <email>info@freshstartdriving.com</email></li>
+                        <li><a href="#">Address:</a> <address>117 Earlsdon Ave N, Earlsdon, Coventry CV5 6GA</address></li>
+                        <li><a href="#">Hours:</a> <hours>Monday=9am–7pm , Tuesday=9am–6pm , Wednesday=9am–7pm , Thursday=9am–7pm , Friday=9am–5pm , Saturday=9:30am–1pm , Sunday=Closed</hours></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fresh Start Driving. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
