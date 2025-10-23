@@ -555,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const form = e.target;
             const submitBtn = form.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
@@ -563,17 +563,46 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show loading state
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-            
+
             try {
-                const data = new FormData(form);
-                // Add recipient email to form data
-                data.append('to', 'calebkennedy747@gmail.com');
+                const formData = new FormData(form);
                 
+                // Add recipient email and subject
+                formData.append('to', 'calebkennedy747@gmail.com');
+                formData.append('subject', 'Contact Request');
+                
+                // Format email body with all form information
+                const name = formData.get('name') || 'Not provided';
+                const email = formData.get('email') || 'Not provided';
+                const phone = formData.get('phone') || 'Not provided';
+                const service = formData.get('service') || 'Not specified';
+                const message = formData.get('message') || 'No message provided';
+                
+                const emailBody = `
+New Contact Request from Fresh Start Driving Website
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Service Interested In: ${service}
+
+Message:
+${message}
+
+---
+This message was sent from the Fresh Start Driving Academy contact form.
+                `.trim();
+                
+                formData.append('body', emailBody);
+                
+                const data = new URLSearchParams(formData); // <-- important
+
                 const response = await fetch('https://script.google.com/macros/s/AKfycbyfkbYeZh75mPc-wPrdeBaxYcpRlzKrEgFjn7WLBtYDvzgfHz0WRbfGhmWwwjWeAmTK/exec', {
                     method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: data
                 });
-                
+
                 if (response.ok) {
                     // Success message
                     submitBtn.textContent = '✅ Message Sent!';
@@ -587,7 +616,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         submitBtn.disabled = false;
                     }, 3000);
                 } else {
-                    throw new Error('Failed to send message');
+                    // Error message
+                    submitBtn.textContent = '⚠️ Failed: ' + response.statusText;
+                    submitBtn.style.backgroundColor = '#ef4444';
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.backgroundColor = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
                 }
             } catch (error) {
                 console.error('Error sending message:', error);
