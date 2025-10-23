@@ -36,12 +36,20 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.logo-container:hover {
+    opacity: 0.8;
 }
 
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
     text-transform: lowercase;
+    color: white;
 }
 
 .logo-image {
