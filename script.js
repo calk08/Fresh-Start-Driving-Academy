@@ -567,8 +567,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const formData = new FormData(form);
                 
-                // Add recipient email and subject
-                formData.append('to', 'calebkennedy747@gmail.com');
+                // Add recipient email and subject;
                 formData.append('subject', 'Contact Request');
                 
                 // Format email body with all form information
