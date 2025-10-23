@@ -6,7 +6,77 @@
     <title>Fresh Start Driving</title>
     <link rel="icon" type="image/png" href="images/fresh-start-driving-logo.png">
     <link rel="stylesheet" href="style.css">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbi58PHdbyKHgPk6DOKqVplHDqxOujUJY&libraries=places&callback=initGoogleReviews"></script>
+    <script>
+// ---- Cookie Consent System (UK GDPR Compliant) ---- //
+
+(function() {
+  const cookieName = "fs_consent";
+  const savedConsent = localStorage.getItem(cookieName);
+
+  // Load scripts only if consent given
+  function loadScripts() {
+    // Load Google Maps API
+    const mapsScript = document.createElement("script");
+    mapsScript.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAbi58PHdbyKHgPk6DOKqVplHDqxOujUJY&libraries=places&callback=initGoogleReviews";
+    mapsScript.async = true;
+    mapsScript.defer = true;
+    document.head.appendChild(mapsScript);
+    
+    // Example: Google Analytics (uncomment and replace YOUR_ID)
+    /*
+    const gtag = document.createElement("script");
+    gtag.src = "https://www.googletagmanager.com/gtag/js?id=YOUR_ID";
+    gtag.async = true;
+    document.head.appendChild(gtag);
+    window.dataLayer = window.dataLayer || [];
+    function gtagFun(){dataLayer.push(arguments);}
+    gtagFun('js', new Date());
+    gtagFun('config', 'YOUR_ID');
+    */
+    
+    // Load marketing embeds (Google Maps iframe, etc.)
+    document.querySelectorAll("[data-cookie='marketing']").forEach(el => {
+      const src = el.getAttribute("data-src");
+      if (src) el.src = src;
+    });
+  }
+
+  // Create banner
+  function createBanner() {
+    const banner = document.createElement("div");
+    banner.id = "cookie-banner";
+    banner.innerHTML = `
+      <div class="cookie-banner-content">
+        <p>We use cookies to improve your experience and analyse traffic. 
+        You can choose to accept or reject non-essential cookies.</p>
+        <div class="cookie-buttons">
+          <button id="accept-cookies">Accept all</button>
+          <button id="reject-cookies">Reject non-essential</button>
+          <a href="/cookies.html" target="_blank">Learn more</a>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(banner);
+
+    document.getElementById("accept-cookies").onclick = function() {
+      localStorage.setItem(cookieName, "accepted");
+      banner.remove();
+      loadScripts();
+    };
+    document.getElementById("reject-cookies").onclick = function() {
+      localStorage.setItem(cookieName, "rejected");
+      banner.remove();
+    };
+  }
+
+  // Check consent
+  if (savedConsent === "accepted") {
+    loadScripts();
+  } else if (!savedConsent) {
+    window.addEventListener("load", createBanner);
+  }
+})();
+</script>
 </head>
 <body>
     <!-- Header -->
@@ -237,7 +307,12 @@
             <p class="section-intro">We provide driving lessons within a 15-mile radius of our location</p>
             
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492721.8841560716!2d-6.409823487500002!3d52.4012622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6cfbdeb63b4f1e39%3A0x1d546d8ddf8daf34!2sFresh%20Start%20Driving%20Academy!5e0!3m2!1sen!2suk!4v1761170574640!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe data-cookie="marketing" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492721.8841560716!2d-6.409823487500002!3d52.4012622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6cfbdeb63b4f1e39%3A0x1d546d8ddf8daf34!2sFresh%20Start%20Driving%20Academy!5e0!3m2!1sen!2suk!4v1761170574640!5m2!1sen!2suk" width="600" height="450" style="border:0; background: #f3f4f6; display: flex; align-items: center; justify-content: center; color: #6b7280; font-family: Arial, sans-serif;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    <div style="text-align: center; padding: 2rem;">
+                        <p style="margin: 0 0 1rem 0; font-size: 1.1rem; font-weight: 600;">📍 Interactive Map</p>
+                        <p style="margin: 0; font-size: 0.9rem;">Please accept marketing cookies to view our location map.</p>
+                    </div>
+                </iframe>
             </div>
             
             <div class="service-area">
