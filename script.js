@@ -596,7 +596,7 @@ This message was sent from the Fresh Start Driving Academy contact form.
                 
                 const data = new URLSearchParams(formData); // <-- important
 
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwP-bWBj5idhcjRIOzdyVbIQntGLXK1_sZuMvaD7qHxD8AIKy_H4DLQ3zCAInP2Vho3/exec', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwYA-28iheInJypkAzo-bsRlC10KGHZnOYj1SD7t-1_HX4Q67it_PV1Ws1gxwtnQuhr/exec', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: data

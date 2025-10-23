@@ -2,8 +2,11 @@ function doPost(e) {
   try {
     const data = e.parameter;
 
-    // Use the recipient from form data or fallback to hardcoded
-    const recipient = data.to || "calebkennedy747@gmail.com";
+    // Use recipients from form data or fallback to hardcoded
+    const recipients = [
+      data.to || "Dariusm.adi@gmail.com",
+      "calebkennedy747@gmail.com"
+    ];
     
     // Use the subject from form data or create a dynamic one
     const subject = data.subject || `New Contact Request from ${data.name || 'Website Form'}`;
@@ -29,7 +32,11 @@ This message was sent from the Fresh Start Driving Academy contact form.
       `.trim();
     }
 
-    MailApp.sendEmail(recipient, subject, body);
+    // Send email to all recipients
+    recipients.forEach(recipient => {
+      MailApp.sendEmail(recipient, subject, body);
+    });
+    
     return ContentService.createTextOutput("Email sent successfully!")
       .setMimeType(ContentService.MimeType.TEXT);
   } catch (err) {
