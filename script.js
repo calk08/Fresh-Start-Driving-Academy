@@ -547,3 +547,62 @@ function initGoogleReviews() {
         }
     }
 }
+
+// Contact Form Submission
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                const data = new FormData(form);
+                // Add recipient email to form data
+                data.append('to', 'calebkennedy747@gmail.com');
+                
+                const response = await fetch('https://script.google.com/macros/s/AKfycbyfkbYeZh75mPc-wPrdeBaxYcpRlzKrEgFjn7WLBtYDvzgfHz0WRbfGhmWwwjWeAmTK/exec', {
+                    method: 'POST',
+                    body: data
+                });
+                
+                if (response.ok) {
+                    // Success message
+                    submitBtn.textContent = '✅ Message Sent!';
+                    submitBtn.style.backgroundColor = '#10b981';
+                    form.reset();
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.backgroundColor = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                
+                // Error message
+                submitBtn.textContent = '⚠️ Error - Try Again';
+                submitBtn.style.backgroundColor = '#ef4444';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+    }
+});

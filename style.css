@@ -32,6 +32,12 @@ body {
     align-items: center;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
@@ -41,8 +47,6 @@ body {
 .logo-image {
     height: 40px;
     width: auto;
-    margin-right: 12px;
-    vertical-align: middle;
 }
 
 .nav {
@@ -164,6 +168,40 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+/* Student Images */
+.student-images {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.student-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.student-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    .student-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .student-images {
+        gap: 0.5rem;
+    }
 }
 
 .section {
@@ -557,6 +595,17 @@ body {
 
 .footer-section ul li a:hover {
     color: #22c55e;
+}
+
+.hours-list {
+    margin-top: 0.5rem;
+    line-height: 1.8;
+}
+
+.hours-list div {
+    padding: 2px 0;
+    font-size: 0.9rem;
+    color: #d1d5db;
 }
 
 .footer-bottom {
