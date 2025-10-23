@@ -604,7 +604,7 @@ This message was sent from the Fresh Start Driving Academy contact form.
 
                 if (response.ok) {
                     // Success message
-                    submitBtn.textContent = '✅ Message Sent!';
+                    submitBtn.textContent = 'Message Sent!';
                     submitBtn.style.backgroundColor = '#10b981';
                     form.reset();
                     
@@ -616,7 +616,7 @@ This message was sent from the Fresh Start Driving Academy contact form.
                     }, 3000);
                 } else {
                     // Error message
-                    submitBtn.textContent = '⚠️ Failed: ' + response.statusText;
+                    submitBtn.textContent = 'Failed: ' + response.statusText;
                     submitBtn.style.backgroundColor = '#ef4444';
                     
                     // Reset button after 3 seconds
@@ -630,7 +630,7 @@ This message was sent from the Fresh Start Driving Academy contact form.
                 console.error('Error sending message:', error);
                 
                 // Error message
-                submitBtn.textContent = '⚠️ Error - Try Again';
+                submitBtn.textContent = 'Error';
                 submitBtn.style.backgroundColor = '#ef4444';
                 
                 // Reset button after 3 seconds
