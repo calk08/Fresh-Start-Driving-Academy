@@ -548,12 +548,16 @@ function initGoogleReviews() {
     }
 }
 
-// Contact Form Submission
-document.addEventListener('DOMContentLoaded', function() {
+// Contact Form Initialization Function
+function initializeContactForm() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+        // Remove any existing event listeners by cloning the element
+        const newContactForm = contactForm.cloneNode(true);
+        contactForm.parentNode.replaceChild(newContactForm, contactForm);
+        
+        newContactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const form = e.target;
@@ -642,4 +646,9 @@ This message was sent from the Fresh Start Driving Academy contact form.
             }
         });
     }
+}
+
+// Initialize contact form on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeContactForm();
 });

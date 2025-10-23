@@ -22,6 +22,103 @@
     mapsScript.defer = true;
     document.head.appendChild(mapsScript);
     
+    // Restore Google Reviews Section
+    const reviewsSection = document.querySelector('.reviews-section .container');
+    if (reviewsSection && reviewsSection.querySelector('.cookie-blocked-content')) {
+      reviewsSection.innerHTML = `
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="google-reviews-container">
+          <div class="google-reviews-widget">
+            <div id="google-reviews" data-place-id="ChIJOR5PO7be-2wRNK-N341tVB0">
+              <div class="reviews-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading Google Reviews...</p>
+              </div>
+            </div>
+          </div>
+          <div class="google-rating-summary">
+            <div class="rating-display">
+              <div class="stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+              <span class="rating-score">5.0</span>
+            </div>
+            <p class="rating-text">Based on Google Reviews</p>
+            <a href="https://www.google.com/maps/place/Fresh+Start+Driving+Academy/@52.4012654,-1.5344741,17z/data=!3m1!4b1!4m6!3m5!1s0x6cfbdeb63b4f1e39:0x1d546d8ddf8daf34!8m2!3d52.4012622!4d-1.5318938!16s%2Fg%2F11yhk3cgr1?entry=ttu&g_ep=EgoyMDI1MTAyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="google-link">
+              View all reviews on Google
+            </a>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Restore Contact Form Section
+    const contactSection = document.querySelector('#contact .container');
+    if (contactSection && contactSection.querySelector('.cookie-blocked-content')) {
+      contactSection.innerHTML = `
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-form">
+          <h3>Send us a Message</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="service">Service Interested In</label>
+              <select id="service" name="service">
+                <option value="">Select a service</option>
+                <option value="manual">Manual Lessons</option>
+                <option value="automatic">Automatic Lessons</option>
+                <option value="intensive">Intensive Course</option>
+                <option value="refresher">Refresher Lessons</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell us about your driving experience and what you're looking for..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      `;
+      
+      // Re-initialize contact form after restoration
+      setTimeout(() => {
+        if (typeof initializeContactForm === 'function') {
+          initializeContactForm();
+        }
+      }, 100);
+    }
+    
+    // Restore Location Section
+    const locationSection = document.querySelector('section[style*="background-color: #f8f9fa"] .container');
+    if (locationSection && locationSection.querySelector('.cookie-blocked-content')) {
+      locationSection.innerHTML = `
+        <h2 class="section-title">Our Location</h2>
+        <p class="section-intro">We provide driving lessons within a 15-mile radius of our location</p>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492721.8841560716!2d-6.409823487500002!3d52.4012622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6cfbdeb63b4f1e39%3A0x1d546d8ddf8daf34!2sFresh%20Start%20Driving%20Academy!5e0!3m2!1sen!2suk!4v1761170574640!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="service-area">
+          <h3 class="section-subtitle">Service Area Coverage</h3>
+          <p>We proudly serve students within a <strong>15-mile radius</strong> of our academy location. This includes surrounding towns, villages, and urban areas to ensure convenient access to quality driving instruction.</p>
+        </div>
+      `;
+    }
+    
     // Example: Google Analytics (uncomment and replace YOUR_ID)
     /*
     const gtag = document.createElement("script");
@@ -135,31 +232,12 @@
     <section class="section reviews-section">
         <div class="container">
             <h2 class="section-title">What Our Customers Say</h2>
-            <div class="google-reviews-container">
-                <div class="google-reviews-widget">
-                    <!-- Google Reviews will be loaded here -->
-                    <div id="google-reviews" data-place-id="ChIJOR5PO7be-2wRNK-N341tVB0">
-                        <div class="reviews-loading">
-                            <div class="loading-spinner"></div>
-                            <p>Loading Google Reviews...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="google-rating-summary">
-                    <div class="rating-display">
-                        <div class="stars">
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                        </div>
-                        <span class="rating-score">5.0</span>
-                    </div>
-                    <p class="rating-text">Based on Google Reviews</p>
-                    <a href="https://www.google.com/maps/place/Fresh+Start+Driving+Academy/@52.4012654,-1.5344741,17z/data=!3m1!4b1!4m6!3m5!1s0x6cfbdeb63b4f1e39:0x1d546d8ddf8daf34!8m2!3d52.4012622!4d-1.5318938!16s%2Fg%2F11yhk3cgr1?entry=ttu&g_ep=EgoyMDI1MTAyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="google-link">
-                        View all reviews on Google
-                    </a>
+            <div class="cookie-blocked-content">
+                <div class="cookie-message">
+                    <div class="cookie-icon">🍪</div>
+                    <h3>Cookie Consent Required</h3>
+                    <p>Please accept marketing cookies to view customer reviews and ratings.</p>
+                    <p>This feature requires Google services which need your consent to load.</p>
                 </div>
             </div>
         </div>
@@ -260,43 +338,22 @@
         <div class="container">
             <h2 class="section-title">Contact Us</h2>
             
-            <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Service Interested In</label>
-                            <select id="service" name="service">
-                                <option value="">Select a service</option>
-                                <option value="manual">Manual Lessons</option>
-                                <option value="automatic">Automatic Lessons</option>
-                                <option value="intensive">Intensive Course</option>
-                                <option value="refresher">Refresher Lessons</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your driving experience and what you're looking for..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+            <div class="cookie-blocked-content">
+                <div class="cookie-message">
+                    <div class="cookie-icon">🍪</div>
+                    <h3>Cookie Consent Required</h3>
+                    <p>Please accept marketing cookies to use the contact form.</p>
+                    <p>This feature requires external services which need your consent to load.</p>
+                    <div class="contact-alternative">
+                        <h4>Alternative Contact Methods:</h4>
+                        <ul>
+                            <li><strong>Phone:</strong> (+44) 07780707120</li>
+                            <li><strong>Email:</strong> info@freshstartdriving.com</li>
+                            <li><strong>Address:</strong> 117 Earlsdon Ave N, Earlsdon, Coventry CV5 6GA</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
         </div>
     </section>
 
@@ -304,20 +361,19 @@
     <section class="section" style="background-color: #f8f9fa;">
         <div class="container">
             <h2 class="section-title">Our Location</h2>
-            <p class="section-intro">We provide driving lessons within a 15-mile radius of our location</p>
             
-            <div class="map-container">
-                <iframe data-cookie="marketing" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492721.8841560716!2d-6.409823487500002!3d52.4012622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6cfbdeb63b4f1e39%3A0x1d546d8ddf8daf34!2sFresh%20Start%20Driving%20Academy!5e0!3m2!1sen!2suk!4v1761170574640!5m2!1sen!2suk" width="600" height="450" style="border:0; background: #f3f4f6; display: flex; align-items: center; justify-content: center; color: #6b7280; font-family: Arial, sans-serif;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    <div style="text-align: center; padding: 2rem;">
-                        <p style="margin: 0 0 1rem 0; font-size: 1.1rem; font-weight: 600;">📍 Interactive Map</p>
-                        <p style="margin: 0; font-size: 0.9rem;">Please accept marketing cookies to view our location map.</p>
+            <div class="cookie-blocked-content">
+                <div class="cookie-message">
+                    <div class="cookie-icon">🍪</div>
+                    <h3>Cookie Consent Required</h3>
+                    <p>Please accept marketing cookies to view the interactive map.</p>
+                    <p>This feature requires Google Maps which needs your consent to load.</p>
+                    <div class="location-alternative">
+                        <h4>Our Address:</h4>
+                        <p><strong>117 Earlsdon Ave N, Earlsdon, Coventry CV5 6GA</strong></p>
+                        <p>We provide driving lessons within a <strong>15-mile radius</strong> of our academy location. This includes surrounding towns, villages, and urban areas to ensure convenient access to quality driving instruction.</p>
                     </div>
-                </iframe>
-            </div>
-            
-            <div class="service-area">
-                <h3 class="section-subtitle">Service Area Coverage</h3>
-                <p>We proudly serve students within a <strong>15-mile radius</strong> of our academy location. This includes surrounding towns, villages, and urban areas to ensure convenient access to quality driving instruction.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -344,6 +400,15 @@
                         <li><a href="#">Automatic Lessons</a></li>
                         <li><a href="#">Intensive Courses</a></li>
                         <li><a href="#">Pass Plus</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="cookies.html">Cookies Policy</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
                     </ul>
                 </div>
                 

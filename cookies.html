@@ -6,78 +6,7 @@
     <title>Cookies Policy - Fresh Start Driving Academy</title>
     <link rel="icon" type="image/png" href="images/fresh-start-driving-logo.png">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .cookies-page {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .cookies-page h1 {
-            color: #22c55e;
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid #22c55e;
-            padding-bottom: 0.5rem;
-        }
-        
-        .cookies-page h2 {
-            color: #16a34a;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .cookies-page p {
-            line-height: 1.6;
-            color: #4b5563;
-            margin-bottom: 1rem;
-        }
-        
-        .cookies-page ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cookies-page li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-            color: #4b5563;
-        }
-        
-        .reset-button {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        
-        .reset-button:hover {
-            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
-        }
-        
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: #22c55e;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .back-link:hover {
-            color: #16a34a;
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="cookies.css">
 </head>
 <body>
     <!-- Header -->
@@ -133,7 +62,8 @@
             </ul>
             
             <p>You can accept or reject non-essential cookies using the cookie banner, or reset your choice below:</p>
-            <button class="reset-button" onclick="localStorage.removeItem('fs_consent');location.reload();">Reset Cookie Preferences</button>
+            <div id="cookie-status"></div>
+            <button class="reset-button">Reset Cookie Preferences</button>
 
             <h2>Contact Us</h2>
             <p>If you have any questions about our use of cookies, please contact us:</p>
@@ -174,7 +104,7 @@
                     <h3>Contact Info</h3>
                     <ul>
                         <li><a href="#">Phone:</a> (+44)07780707120</li>
-                        <li><a href="#">Email:</a> info@freshstartdriving.com</li>
+                        <li><a href="#">Email:</a> Dariusm.adi@gmail.com</li>
                         <li><a href="#">Address:</a> 117 Earlsdon Ave N, Earlsdon, Coventry CV5 6GA</li>
                     </ul>
                 </div>
@@ -200,5 +130,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="cookies.js"></script>
 </body>
 </html>
