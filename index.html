@@ -11,7 +11,16 @@
 
 (function() {
   const cookieName = "fs_consent";
-  const savedConsent = localStorage.getItem(cookieName);
+  
+  // Function to check consent status
+  function getConsentStatus() {
+    try {
+      return localStorage.getItem(cookieName);
+    } catch (e) {
+      console.error('localStorage access error:', e);
+      return null;
+    }
+  }
 
   // Load scripts only if consent given
   function loadScripts() {
@@ -170,21 +179,42 @@
     document.body.appendChild(banner);
 
     document.getElementById("accept-cookies").onclick = function() {
+      console.log('Accept cookies clicked');
       localStorage.setItem(cookieName, "accepted");
+      console.log('Cookie consent stored as:', localStorage.getItem(cookieName));
       banner.remove();
       loadScripts();
     };
     document.getElementById("reject-cookies").onclick = function() {
+      console.log('Reject cookies clicked');
       localStorage.setItem(cookieName, "rejected");
+      console.log('Cookie rejection stored as:', localStorage.getItem(cookieName));
       banner.remove();
     };
   }
 
-  // Check consent
-  if (savedConsent === "accepted") {
-    loadScripts();
-  } else if (!savedConsent) {
-    window.addEventListener("load", createBanner);
+  // Check consent status when DOM is ready
+  function checkConsent() {
+    const savedConsent = getConsentStatus();
+    console.log('Cookie consent check - savedConsent value:', savedConsent);
+    
+    if (savedConsent === "accepted") {
+      console.log('Cookies accepted - loading scripts');
+      loadScripts();
+    } else if (savedConsent === "rejected") {
+      console.log('Cookies rejected - banner will not show');
+      // User has explicitly rejected, don't show banner
+    } else {
+      console.log('No cookie preference set - showing banner');
+      createBanner();
+    }
+  }
+
+  // Wait for DOM to be ready before checking consent
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkConsent);
+  } else {
+    checkConsent();
   }
 })();
 </script>

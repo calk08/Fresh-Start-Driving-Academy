@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset cookie preferences function
     function resetCookiePreferences() {
         // Remove the consent from localStorage
+        console.log('Resetting cookie preferences - current value:', localStorage.getItem('fs_consent'));
         localStorage.removeItem('fs_consent');
+        console.log('Cookie preferences removed - current value:', localStorage.getItem('fs_consent'));
         
         // Show confirmation message
         const button = document.querySelector('.reset-button');
@@ -31,6 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedConsent = localStorage.getItem('fs_consent');
         const statusContainer = document.getElementById('cookie-status');
         
+        // Debug logging
+        console.log('Cookie status check - savedConsent:', savedConsent);
+        console.log('Cookie status check - type:', typeof savedConsent);
+        
         if (statusContainer) {
             let statusText = '';
             let statusClass = '';
@@ -42,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusText = '⚠️ You have rejected non-essential cookies';
                 statusClass = 'status-rejected';
             } else {
-                statusText = 'ℹ️ No cookie preferences set';
+                statusText = `ℹ️ No cookie preferences set (Current value: "${savedConsent}")`;
                 statusClass = 'status-none';
             }
             
