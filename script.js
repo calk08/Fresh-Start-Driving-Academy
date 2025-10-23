@@ -538,14 +538,146 @@ document.addEventListener('DOMContentLoaded', function() {
 function initGoogleReviews() {
     // This will be called when the Google Maps API is fully loaded
     const reviewsContainer = document.getElementById('google-reviews');
-    if (reviewsContainer && typeof loadGoogleReviews === 'function') {
-        // Trigger reviews loading if the DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                // Reviews will be loaded by the existing DOMContentLoaded listener
-            });
+    if (reviewsContainer) {
+        // Wait for Google Maps API to be fully ready
+        function waitForGoogleMaps() {
+            if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+                // Initialize the reviews loading function if it exists
+                const apiKey = 'AIzaSyAbi58PHdbyKHgPk6DOKqVplHDqxOujUJY';
+                const placeId = reviewsContainer.getAttribute('data-place-id');
+                
+                if (placeId && apiKey) {
+                    // Load reviews directly
+                    loadGoogleReviewsWithAPI(placeId, apiKey);
+                } else {
+                    console.error('Place ID or API key missing for Google Reviews');
+                }
+            } else {
+                // If Google Maps API isn't loaded yet, wait a bit and try again
+                setTimeout(waitForGoogleMaps, 500);
+            }
         }
+        
+        waitForGoogleMaps();
     }
+}
+
+// Helper function to load reviews with Google Places API
+function loadGoogleReviewsWithAPI(placeId, apiKey) {
+    const reviewsContainer = document.getElementById('google-reviews');
+    if (!reviewsContainer) return;
+    
+    // Initialize Google Maps Place Service
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    
+    const request = {
+        placeId: placeId,
+        fields: ['name', 'rating', 'reviews', 'user_ratings_total']
+    };
+    
+    service.getDetails(request, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && place) {
+            displayReviews(place);
+            updateRatingSummary(place);
+        } else {
+            console.error('Places service failed:', status);
+            displayFallbackReviews();
+        }
+    });
+}
+
+// Function to display reviews from API response
+function displayReviews(placeData) {
+    const reviewsContainer = document.getElementById('google-reviews');
+    if (!reviewsContainer) return;
+    
+    const reviews = placeData.reviews || [];
+    
+    if (reviews.length === 0) {
+        displayFallbackReviews();
+        return;
+    }
+    
+    const reviewsHTML = reviews.slice(0, 3).map(review => `
+        <div class="review-item">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <strong class="reviewer-name">${review.author_name}</strong>
+                    <div class="review-stars">${generateStars(review.rating)}</div>
+                </div>
+                <span class="review-date">${formatRelativeTime(review.time)}</span>
+            </div>
+            <p class="review-text">"${review.text}"</p>
+        </div>
+    `).join('');
+    
+    reviewsContainer.innerHTML = reviewsHTML;
+}
+
+// Function to generate star display
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    let starsHTML = '';
+    
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '★';
+    }
+    if (hasHalfStar) {
+        starsHTML += '☆';
+    }
+    for (let i = fullStars + (hasHalfStar ? 1 : 0); i < 5; i++) {
+        starsHTML += '☆';
+    }
+    
+    return starsHTML;
+}
+
+// Function to format relative time
+function formatRelativeTime(timestamp) {
+    const now = new Date();
+    const reviewDate = new Date(timestamp * 1000);
+    const diffInMs = now - reviewDate;
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+    const diffInWeeks = Math.floor(diffInDays / 7);
+    const diffInMonths = Math.floor(diffInDays / 30);
+    
+    if (diffInDays < 7) {
+        return diffInDays <= 1 ? '1 day ago' : `${diffInDays} days ago`;
+    } else if (diffInWeeks < 4) {
+        return diffInWeeks === 1 ? '1 week ago' : `${diffInWeeks} weeks ago`;
+    } else {
+        return diffInMonths === 1 ? '1 month ago' : `${diffInMonths} months ago`;
+    }
+}
+
+// Update rating summary
+function updateRatingSummary(placeData) {
+    const ratingScore = document.querySelector('.rating-score');
+    const ratingText = document.querySelector('.rating-text');
+    
+    if (ratingScore && placeData.rating) {
+        ratingScore.textContent = placeData.rating.toFixed(1);
+    }
+    
+    if (ratingText && placeData.user_ratings_total) {
+        ratingText.textContent = `Based on ${placeData.user_ratings_total} Google Reviews`;
+    }
+}
+
+// Fallback reviews if API fails
+function displayFallbackReviews() {
+    const reviewsContainer = document.getElementById('google-reviews');
+    if (!reviewsContainer) return;
+    
+    const reviewsHTML = `
+        <div class="reviews-error">
+            <p>Reviews can't load at the moment.</p>
+            <p>Please check back later or view our reviews directly on Google.</p>
+        </div>
+    `;
+    
+    reviewsContainer.innerHTML = reviewsHTML;
 }
 
 // Contact Form Initialization Function

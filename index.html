@@ -54,6 +54,20 @@
           </div>
         </div>
       `;
+      
+      // Re-initialize Google Reviews after content restoration
+      setTimeout(() => {
+        // Check if the Google Maps API has already loaded
+        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+          // API is already loaded, initialize reviews directly
+          if (typeof initGoogleReviews === 'function') {
+            initGoogleReviews();
+          }
+        } else {
+          // API not loaded yet, it will be called by the API callback
+          console.log('Google Maps API will initialize reviews when loaded');
+        }
+      }, 500);
     }
     
     // Restore Contact Form Section
