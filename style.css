@@ -48,7 +48,7 @@ body {
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    text-transform: lowercase;
+    align-items: center;
     color: white;
 }
 
