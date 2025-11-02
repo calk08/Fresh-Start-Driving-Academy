@@ -14,7 +14,7 @@
 
     <!-- Main index page with extension -->
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/index.html</loc>
+        <loc>https://www.freshstartdriving.uk/index.html</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -22,7 +22,7 @@
 
     <!-- Code of Practice page - Important for credibility -->
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/code-of-practice.html</loc>
+        <loc>https://www.freshstartdriving.uk/code-of-practice.html</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
     <!-- Cookies Policy page - Required for compliance -->
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/cookies.html</loc>
+        <loc>https://www.freshstartdriving.uk/cookies.html</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -38,42 +38,35 @@
 
     <!-- Student images for better SEO -->
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/student%201.jpg</loc>
+        <loc>https://www.freshstartdriving.uk/images/student%201.jpg</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
 
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/student%202.jpg</loc>
+        <loc>https://www.freshstartdriving.uk/images/student%202.jpg</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
 
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/student%203.jpg</loc>
+        <loc>https://www.freshstartdriving.uk/images/student%203.jpg</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
 
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/student%204.jpg</loc>
+        <loc>https://www.freshstartdriving.uk/images/student%204.jpg</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
 
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/student%205.jpg</loc>
-        <lastmod>2025-11-02</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.4</priority>
-    </url>
-
-    <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/student%206.jpg</loc>
+        <loc>https://www.freshstartdriving.uk/images/student%205.jpg</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
@@ -81,17 +74,54 @@
 
     <!-- Logo and certification images -->
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/fresh-start-driving-logo.png</loc>
+        <loc>https://www.freshstartdriving.uk/images/fresh-start-driving-logo.png</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
 
     <url>
-        <loc>https://fresh-start-driving-academy.github.io/images/adi-code-of-practice-logo.jpg</loc>
+        <loc>https://www.freshstartdriving.uk/images/adi-code-of-practice-logo.jpg</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
+    </url>
+
+    <!-- Social media images for brand consistency -->
+    <url>
+        <loc>https://www.freshstartdriving.uk/images/facebook.png</loc>
+        <lastmod>2025-11-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://www.freshstartdriving.uk/images/Instagram.png</loc>
+        <lastmod>2025-11-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://www.freshstartdriving.uk/images/X.png</loc>
+        <lastmod>2025-11-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Video content for rich media SEO -->
+    <url>
+        <loc>https://www.freshstartdriving.uk/video/driving-footage.mp4</loc>
+        <lastmod>2025-11-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://www.freshstartdriving.uk/video/driving-footage.webm</loc>
+        <lastmod>2025-11-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
     </url>
 
 </urlset>
