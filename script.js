@@ -150,17 +150,53 @@ function animateCounters() {
     
     counters.forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target')) || 0;
+        const originalText = counter.textContent;
+        const suffix = originalText.replace(/^\d+/, ''); // Extract any suffix like %
         const duration = 2000;
         const increment = target / (duration / 16);
         let current = 0;
         
+        // Check if this is the star rating counter
+        const isStarRating = counter.closest('.stat').querySelector('.label').textContent.toLowerCase().includes('star');
+        let starsContainer = null;
+        
+        if (isStarRating) {
+            // Create stars container if it doesn't exist
+            starsContainer = counter.closest('.stat').querySelector('.stars-display');
+            if (!starsContainer) {
+                starsContainer = document.createElement('div');
+                starsContainer.className = 'stars-display';
+                starsContainer.style.cssText = `
+                    margin-top: 0.5rem;
+                    font-size: 1.5rem;
+                    color: #16a34a;
+                    line-height: 1;
+                `;
+                counter.parentNode.insertBefore(starsContainer, counter.nextSibling);
+            }
+        }
+        
         const updateCounter = () => {
             if (current < target) {
                 current += increment;
-                counter.textContent = Math.floor(current);
+                const currentValue = Math.floor(current);
+                counter.textContent = currentValue + suffix;
+                
+                // Update stars if this is star rating
+                if (isStarRating && starsContainer) {
+                    const starsToShow = Math.min(currentValue, 5); // Cap at 5 stars
+                    starsContainer.textContent = '★'.repeat(starsToShow);
+                }
+                
                 requestAnimationFrame(updateCounter);
             } else {
-                counter.textContent = target;
+                counter.textContent = target + suffix;
+                
+                // Final stars update
+                if (isStarRating && starsContainer) {
+                    const starsToShow = Math.min(target, 5); // Cap at 5 stars
+                    starsContainer.textContent = '★'.repeat(starsToShow);
+                }
             }
         };
         
@@ -171,17 +207,24 @@ function animateCounters() {
 // Trigger counter animation when stats section is visible
 document.addEventListener('DOMContentLoaded', function() {
     const statsSection = document.querySelector('.stats');
+    console.log('Stats section found:', statsSection);
     
     if (statsSection) {
+        // Also trigger immediately to ensure visibility
+        setTimeout(() => {
+            animateCounters();
+        }, 500);
+        
         const statsObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    console.log('Stats section is visible, animating counters');
                     animateCounters();
                     statsObserver.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.5
+            threshold: 0.1
         });
         
         statsObserver.observe(statsSection);
