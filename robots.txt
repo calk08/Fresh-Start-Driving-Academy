@@ -1,0 +1,30 @@
+# Robots.txt for Fresh Start Driving Academy
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the entire site
+Allow: /index.html
+Allow: /cookies.html
+Allow: /code-of-practice.html
+Allow: /style.css
+Allow: /script.js
+Allow: /images/
+Allow: /video/
+
+# Disallow crawling of any potential admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.log$
+Disallow: /temp/
+
+# Allow crawling of important SEO files
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+# Crawl delay (optional - be respectful to servers)
+Crawl-delay: 1
+
+# Sitemap location (when you create one)
+Sitemap: https://fresh-start-driving-academy.github.io/sitemap.xml
