@@ -26,5 +26,5 @@ Allow: /robots.txt
 # Crawl delay (optional - be respectful to servers)
 Crawl-delay: 1
 
-# Sitemap location (when you create one)
-Sitemap: https://fresh-start-driving-academy.github.io/sitemap.xml
+# Sitemap location
+Sitemap: https://www.freshstartdriving.uk/sitemap.xml
