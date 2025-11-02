@@ -631,6 +631,39 @@ body {
     color: #9ca3af;
 }
 
+.certification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.adi-certification {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    max-width: 200px;
+}
+
+.adi-logo {
+    width: 100%;
+    min-width: 120px;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.adi-logo:hover {
+    transform: scale(1.05);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .menu-toggle {
@@ -696,6 +729,23 @@ body {
     .google-rating-summary {
         order: -1;
         padding: 1.5rem;
+    }
+    
+    /* Certification responsive styling */
+    .certification {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .adi-certification {
+        min-width: 100px;
+        max-width: 150px;
+    }
+    
+    .adi-logo {
+        min-width: 100px;
+        max-width: 150px;
+        object-fit: contain;
     }
 }
 
@@ -965,5 +1015,199 @@ body {
     .location-alternative {
         margin-top: 1.5rem;
         padding: 1rem;
+    }
+}
+
+/* ========================================
+   COOKIES PAGE SPECIFIC STYLES
+   ======================================== */
+
+/* Cookies Page Specific Styles */
+.cookies-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.cookies-page h1 {
+    color: #22c55e;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid #22c55e;
+    padding-bottom: 0.5rem;
+}
+
+.cookies-page h2 {
+    color: #16a34a;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.cookies-page p {
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 1rem;
+}
+
+.cookies-page ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cookies-page li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
+.reset-button {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    margin: 1rem 0;
+}
+
+.reset-button:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #22c55e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #16a34a;
+    text-decoration: underline;
+}
+
+/* Cookie status display */
+.cookie-status {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-accepted {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.status-rejected {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+.status-none {
+    background: #e0f2fe;
+    color: #0c4a6e;
+    border: 1px solid #bae6fd;
+}
+
+/* Contact items that can be copied */
+.contact-copy {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.contact-copy:hover {
+    color: #22c55e;
+}
+
+/* ADI Banner Styles for Code of Practice Page */
+.adi-certification-banner {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 2px solid #22c55e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    gap: 1.5rem;
+}
+
+.adi-banner-logo {
+    max-width: 100px;
+    height: auto;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.certification-text h3 {
+    color: #16a34a;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.certification-text p {
+    color: #4b5563;
+    margin: 0;
+    font-style: italic;
+}
+
+.contact-info-box {
+    background: #f9fafb;
+    border-left: 4px solid #22c55e;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.contact-info-box h3 {
+    color: #16a34a;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.contact-info-box p {
+    margin-bottom: 0.5rem;
+}
+
+/* Mobile responsive adjustments for cookies/code-of-practice pages */
+@media (max-width: 768px) {
+    .cookies-page {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .cookies-page h1 {
+        font-size: 1.8rem;
+    }
+    
+    .cookies-page h2 {
+        font-size: 1.3rem;
+    }
+    
+    .reset-button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .adi-certification-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .adi-banner-logo {
+        max-width: 80px;
     }
 }
