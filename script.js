@@ -877,13 +877,13 @@ document.addEventListener('DOMContentLoaded', function() {
             let statusClass = '';
             
             if (savedConsent === 'accepted') {
-                statusText = '✅ You have accepted all cookies';
+                statusText = 'You have accepted all cookies';
                 statusClass = 'status-accepted';
             } else if (savedConsent === 'rejected') {
-                statusText = '⚠️ You have rejected non-essential cookies';
+                statusText = 'You have rejected non-essential cookies';
                 statusClass = 'status-rejected';
             } else {
-                statusText = `ℹ️ No cookie preferences set (Current value: "${savedConsent}")`;
+                statusText = `No cookie preferences set (Current value: "${savedConsent}")`;
                 statusClass = 'status-none';
             }
             
@@ -918,7 +918,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const text = this.textContent;
             navigator.clipboard.writeText(text).then(() => {
                 const originalText = this.innerHTML;
-                this.innerHTML = '📋 Copied!';
+                this.innerHTML = 'Copied!';
                 setTimeout(() => {
                     this.innerHTML = originalText;
                 }, 2000);

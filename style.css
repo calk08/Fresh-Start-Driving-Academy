@@ -318,7 +318,7 @@ body {
 }
 
 .image-placeholder {
-    background: #e2e8f0;
+    background: white;
     border-radius: 12px;
     min-height: 300px;
     display: flex;
@@ -326,7 +326,7 @@ body {
     justify-content: center;
     color: #64748b;
     font-size: 1.1rem;
-    border: 2px dashed #cbd5e1;
+    border: 2px dashed white;
 }
 
 /* Call to Action */
@@ -673,8 +673,8 @@ body {
 }
 
 .x-logo {
-    width: 55px;
-    height: 55px;
+    width: 66px;
+    height: 66px;
     object-fit: contain;
     transition: transform 0.3s ease;
 }
@@ -716,8 +716,8 @@ body {
     }
     
     .x-logo {
-        width: 55px !important;
-        height: 55px !important;
+        width: 66px !important;
+        height: 66px !important;
     }
 }
 
