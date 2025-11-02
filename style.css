@@ -637,7 +637,7 @@ body {
     font-weight: 700;
 }
 
-/* Social Media Section */
+/* Social Media Links */
 .social-media-section {
     padding: 4rem 0;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -647,23 +647,24 @@ body {
 .social-media-links {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 6rem;
     margin-top: 2rem;
 }
 
 .social-media-links a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1.5rem;
+    display: inline-block;
+    padding: 1rem;
     background: white;
-    border-radius: 12px;
+    border-radius: 50%;
     text-decoration: none;
-    color: #374151;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-    min-width: 120px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-media-links a:hover {
@@ -671,33 +672,31 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.social-media-links a i {
-    font-size: 2rem;
-    transition: color 0.3s ease;
+.x-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
-.social-media-links a span {
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.social-media-links a:hover .x-logo {
+    transform: scale(1.1);
 }
 
-/* Platform-specific colors */
-.social-media-links a[href*="facebook"]:hover i {
-    color: #1877f2;
+/* Platform-specific styling */
+.facebook:hover {
+    border-color: #1877f2;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
 }
 
-.social-media-links a[href*="instagram"]:hover i {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.instagram:hover {
+    border-color: #e4405f;
+    background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 100%);
 }
 
-.social-media-links a[href*="X.com"]:hover i,
-.social-media-links a[href*="twitter.com"]:hover i {
-    color: #000000;
+.x:hover {
+    border-color: #000000;
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
 }
 
 @media (max-width: 768px) {
@@ -708,11 +707,11 @@ body {
     }
     
     .social-media-links a {
-        flex-direction: row;
-        width: 200px;
-        justify-content: flex-start;
-        gap: 1rem;
-        padding: 1rem 1.5rem;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
