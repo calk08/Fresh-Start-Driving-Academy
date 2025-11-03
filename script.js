@@ -927,4 +927,32 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    // Header scroll animation
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+    
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down
+            header.classList.add('header-hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('header-hidden');
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    }
+    
+    // Throttle scroll events for better performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+            setTimeout(() => { ticking = false; }, 10);
+        }
+    });
 });
