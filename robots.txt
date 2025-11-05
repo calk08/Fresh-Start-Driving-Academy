@@ -1,6 +1,6 @@
 # Robots.txt for Fresh Start Driving Academy
 # https://www.robotstxt.org/robotstxt.html
-# Last updated: November 3, 2025
+# Last updated: November 5, 2025
 
 User-agent: *
 Allow: /
@@ -14,7 +14,6 @@ Allow: /script.js
 Allow: /images/
 Allow: /video/
 
-# Disallow sensitive areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /.git/
@@ -22,8 +21,4 @@ Disallow: /node_modules/
 Disallow: /temp/
 Disallow: /backup/
 
-# Crawl delay for respectful crawling
-Crawl-delay: 1
-
-# Sitemap location
 Sitemap: https://www.freshstartdriving.uk/sitemap.xml
