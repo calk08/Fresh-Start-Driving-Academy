@@ -955,4 +955,36 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => { ticking = false; }, 10);
         }
     });
+
+    // Traffic Light CTA Animation
+    function animateTrafficLightCTAs() {
+        const ctaButtons = document.querySelectorAll('.traffic-light-cta');
+        
+        ctaButtons.forEach((cta, index) => {
+            const delay = parseInt(cta.getAttribute('data-delay')) || (index * 200);
+            
+            setTimeout(() => {
+                cta.classList.add('expanded');
+            }, delay + 1000); // Start after 1 second delay
+        });
+    }
+
+    // Trigger animation when hero section is visible
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        const heroObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        animateTrafficLightCTAs();
+                    }, 500);
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+        
+        heroObserver.observe(heroSection);
+    }
 });

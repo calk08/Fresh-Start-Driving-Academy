@@ -257,61 +257,48 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="container">
-            <h1>Fresh Start Driving Academy</h1>
-            <p class="subtitle">Your route to success starts here</p>
-            
+            <h1>Your route to success starts here</h1>
+
             <div class="features">
-                <div class="feature-card">
-                    <div class="content">
-                        <h2><b>5 Star Rating</b></h2>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="content">
-                        <h2><b>Client Centered</b></h2>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="content">
-                        <h2><b>Flexible Approach</b></h2>
+                <div class="traffic-light-container">
+                    <div class="traffic-light-pole">
+                        <div class="traffic-light-cta" data-delay="0">
+                            <div class="traffic-circle red"></div>
+                            <div class="cta-content">
+                                <h2>5 Star Rating</h2>
+                                <p>Rated excellence by our students</p>
+                            </div>
+                        </div>
+                        <div class="traffic-light-cta" data-delay="200">
+                            <div class="traffic-circle amber"></div>
+                            <div class="cta-content">
+                                <h2>Client Centered</h2>
+                                <p>Personalized learning approach</p>
+                            </div>
+                        </div>
+                        <div class="traffic-light-cta" data-delay="400">
+                            <div class="traffic-circle green"></div>
+                            <div class="cta-content">
+                                <h2>Flexible Approach</h2>
+                                <p>Lessons that fit your schedule</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Social Media Section -->
-    <section class="social-media-section">
-        <div class="container">
-            <h2 class="section-title">Follow Us on Social Media</h2>
-            <p class="section-intro">Stay connected and get the latest updates from Fresh Start Driving Academy.</p>
-            <div class="social-media-links">
-                <a class="facebook" href="https://www.facebook.com/share/1NGdMsJtdQ/" target="_blank" rel="noopener noreferrer"><img src="images/facebook.png" alt="Facebook Logo" class="x-logo"></a>
-                <a class="instagram" href="https://www.instagram.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/Instagram.png" alt="Instagram Logo" class="x-logo"></a>
-                <a class="x" href="https://www.X.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/X.png" alt="X Logo" class="x-logo"></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Google Reviews Section -->
-    <section class="section reviews-section">
-        <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
-            <div class="cookie-blocked-content">
-                <div class="cookie-message">
-                    <div class="cookie-icon">🍪</div>
-                    <h3>Cookie Consent Required</h3>
-                    <p>Please accept marketing cookies to view customer reviews and ratings.</p>
-                    <p>This feature requires Google services which need your consent to load.</p>
-                </div>
-            </div>
+        
+        <!-- Scroll Cue -->
+        <div class="scroll-cue" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+            <div class="scroll-cue-text">Scroll Down</div>
+            <div class="scroll-arrow"></div>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title">about us</h2>
+            <h2 class="section-title">About Us</h2>
             <p class="section-intro">At Fresh Start Driving Academy we pride ourselves on empowering Safe, Confident Drivers and we are committed to providing top-quality driver education that emphasizes safety, confidence, and skill. We deliver comprehensive training programs tailored to meet the needs of new drivers, teens, adults, and seniors. Whether you're preparing for your first driving test or looking to refresh your skills, we offer flexible lessons, up-to-date curriculum, and real-world driving experience to help you succeed on the road.</p>
             
             <div class="student-images">
@@ -358,6 +345,21 @@
                 <div class="card">
                     <h3>Mock Tests</h3>
                     <p><!-- Add your mock test description here --></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Reviews Section -->
+    <section class="section reviews-section">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="cookie-blocked-content">
+                <div class="cookie-message">
+                    <div class="cookie-icon">🍪</div>
+                    <h3>Cookie Consent Required</h3>
+                    <p>Please accept marketing cookies to view customer reviews and ratings.</p>
+                    <p>This feature requires Google services which need your consent to load.</p>
                 </div>
             </div>
         </div>
@@ -444,6 +446,19 @@
         </div>
     </section>
 
+    <!-- Social Media Section -->
+    <section class="social-media-section">
+        <div class="container">
+            <h2 class="section-title">Follow Us on Social Media</h2>
+            <p class="section-intro">Stay connected and get the latest updates from Fresh Start Driving Academy.</p>
+            <div class="social-media-links">
+                <a class="facebook" href="https://www.facebook.com/share/1NGdMsJtdQ/" target="_blank" rel="noopener noreferrer"><img src="images/facebook.png" alt="Facebook Logo" class="x-logo"></a>
+                <a class="instagram" href="https://www.instagram.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/Instagram.png" alt="Instagram Logo" class="x-logo"></a>
+                <a class="x" href="https://www.X.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/X.png" alt="X Logo" class="x-logo"></a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -508,6 +523,11 @@
                     <div class="adi-certification">
                         <a href="https://www.gov.uk/government/publications/driving-instructor-code-of-practice/approved-driving-instructor-adi-code-of-practice" target="_blank" rel="noopener noreferrer" aria-label="View official ADI Code of Practice on GOV.UK" title="ADI Code of Practice - Official driving instructor standards and guidelines">
                             <img src="images/adi-code-of-practice-logo.jpg" alt="ADI Code of Practice - Approved Driving Instructor certification logo" class="adi-logo">
+                        </a>
+                    </div>
+                    <div class="royal-british-legion-logo">
+                        <a href="https://www.britishlegion.org.uk/" target="_blank" rel="noopener noreferrer" aria-label="View Royal British Legion official website" title="Royal British Legion - Support for the Armed Forces community">
+                            <img src="images/royal-british-legion-logo.png" alt="Royal British Legion logo" class="royal-british-legion-logo">
                         </a>
                     </div>
                 </div>
