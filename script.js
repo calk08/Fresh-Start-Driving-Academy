@@ -1,3 +1,108 @@
+// Dynamic Hero Height Adjustment for Mobile
+function setHeroHeight() {
+    const hero = document.querySelector('.hero');
+    const header = document.querySelector('.header');
+    
+    if (hero && header) {
+        // Get the actual viewport height
+        const viewportHeight = window.innerHeight;
+        
+        // Get the header height
+        const headerHeight = header.offsetHeight;
+        
+        // Calculate available height for hero (viewport - header)
+        const heroHeight = viewportHeight - headerHeight;
+        
+        // Set the hero min-height using inline style (overrides CSS)
+        hero.style.minHeight = `${heroHeight}px`;
+    }
+}
+
+// Show Remembrance Poppy in November only
+function checkNovemberPoppy() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth(); // 0 = January, 10 = November
+    const poppy = document.getElementById('remembrancePoppy');
+    
+    if (poppy && currentMonth === 10) { // November is month 10 (0-indexed)
+        poppy.classList.add('show-november');
+    }
+}
+
+// Run on load
+document.addEventListener('DOMContentLoaded', function() {
+    setHeroHeight();
+    checkNovemberPoppy();
+});
+
+// Run on resize (handles orientation changes and window resizing)
+window.addEventListener('resize', function() {
+    setHeroHeight();
+});
+
+// Run on orientation change (specific to mobile devices)
+window.addEventListener('orientationchange', function() {
+    // Small delay to allow browser to recalculate dimensions
+    setTimeout(setHeroHeight, 100);
+});
+
+// Hero Traffic Light Animation Sequence
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for traffic light to slide in from bottom (1.5s delay + 1s animation = 2.5s)
+    setTimeout(() => {
+        const trafficLights = document.querySelectorAll('.traffic-light-cta');
+        
+        // Red light glows (2.5s)
+        setTimeout(() => {
+            const redCircle = trafficLights[0].querySelector('.traffic-circle.red');
+            redCircle.classList.add('glow');
+            
+            // Remove glow after animation and start amber (3.3s)
+            setTimeout(() => {
+                redCircle.classList.remove('glow');
+                
+                // Amber light glows
+                const amberCircle = trafficLights[1].querySelector('.traffic-circle.amber');
+                amberCircle.classList.add('glow');
+                
+                // Remove glow after animation and start green (4.1s)
+                setTimeout(() => {
+                    amberCircle.classList.remove('glow');
+                    
+                    // Green light glows
+                    const greenCircle = trafficLights[2].querySelector('.traffic-circle.green');
+                    greenCircle.classList.add('glow');
+                    
+                    // Fade the traffic light pole to clear 0.2s after green starts glowing
+                    const trafficLightPole = document.querySelector('.traffic-light-pole');
+                    setTimeout(() => {
+                        trafficLightPole.classList.add('fade-to-clear');
+                    }, 200); // 0.2s after green starts glowing
+                    
+                    // Remove glow and expand all CTAs (4.9s)
+                    setTimeout(() => {
+                        greenCircle.classList.remove('glow');
+                        
+                        // Expand all CTAs to show text
+                        trafficLights.forEach((cta, index) => {
+                            setTimeout(() => {
+                                cta.classList.add('expanded');
+                                
+                                // Show content with delay
+                                const content = cta.querySelector('.cta-content');
+                                setTimeout(() => {
+                                    content.style.opacity = '1';
+                                    content.style.transform = 'translateX(0)';
+                                }, 100);
+                            }, index * 200); // Stagger the expansion
+                        });
+                    }, 800); // Wait for green glow to complete
+                }, 800); // Wait for amber glow to complete
+            }, 800); // Wait for red glow to complete
+        }, 0); // Start immediately after traffic light appears
+    }, 2500); // Wait for traffic light to finish sliding in
+});
+
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
@@ -956,35 +1061,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Traffic Light CTA Animation
-    function animateTrafficLightCTAs() {
-        const ctaButtons = document.querySelectorAll('.traffic-light-cta');
-        
-        ctaButtons.forEach((cta, index) => {
-            const delay = parseInt(cta.getAttribute('data-delay')) || (index * 200);
-            
-            setTimeout(() => {
-                cta.classList.add('expanded');
-            }, delay + 1000); // Start after 1 second delay
-        });
-    }
+    // Traffic Light CTA Animation - DISABLED (using new glow animation sequence)
+    // function animateTrafficLightCTAs() {
+    //     const ctaButtons = document.querySelectorAll('.traffic-light-cta');
+    //     
+    //     ctaButtons.forEach((cta, index) => {
+    //         const delay = parseInt(cta.getAttribute('data-delay')) || (index * 200);
+    //         
+    //         setTimeout(() => {
+    //             cta.classList.add('expanded');
+    //         }, delay + 1000); // Start after 1 second delay
+    //     });
+    // }
 
-    // Trigger animation when hero section is visible
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        const heroObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        animateTrafficLightCTAs();
-                    }, 500);
-                    heroObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.3
-        });
-        
-        heroObserver.observe(heroSection);
-    }
+    // Trigger animation when hero section is visible - DISABLED
+    // const heroSection = document.querySelector('.hero');
+    // if (heroSection) {
+    //     const heroObserver = new IntersectionObserver(function(entries) {
+    //         entries.forEach(entry => {
+    //             if (entry.isIntersecting) {
+    //                 setTimeout(() => {
+    //                     animateTrafficLightCTAs();
+    //                 }, 500);
+    //                 heroObserver.unobserve(entry.target);
+    //             }
+    //         });
+    //     }, {
+    //         threshold: 0.3
+    //     });
+    //     
+    //     heroObserver.observe(heroSection);
+    // }
 });

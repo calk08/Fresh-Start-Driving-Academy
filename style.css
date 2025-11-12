@@ -227,6 +227,9 @@ body {
     font-weight: bold;
     margin-bottom: 1rem;
     text-transform: capitalize;
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideInFromLeft 1s ease-out 0.5s forwards;
 }
 
 .hero .subtitle {
@@ -250,6 +253,9 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideInFromBottom 1s ease-out 1.5s forwards;
 }
 
 .traffic-light-pole {
@@ -263,6 +269,10 @@ body {
     flex-direction: column;
     gap: 0.5rem;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.traffic-light-pole.fade-to-clear {
+    animation: fadeToTransparent 0.8s ease-out forwards;
 }
 
 .traffic-light-pole.split {
@@ -283,7 +293,7 @@ body {
     position: relative;
     color: white;
     border-radius: 50px;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: none;
     cursor: pointer;
     width: 60px;
     height: 60px;
@@ -292,7 +302,7 @@ body {
 }
 
 .traffic-light-cta.expanded {
-    width: 360px;
+    width: 500px;
     height: auto;
     padding: 1.5rem 2rem;
     gap: 1.5rem;
@@ -303,6 +313,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     -webkit-backdrop-filter: blur(20px);
     justify-content: flex-start;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .traffic-light-cta:hover.expanded {
@@ -347,20 +358,41 @@ body {
     opacity: 0.7;
 }
 
+/* Traffic Light Glow Effects */
+.traffic-circle.glow {
+    animation: glowPulse 0.8s ease-in-out;
+}
+
+.traffic-circle.red.glow {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 40px rgba(239, 68, 68, 0.6), 0 0 60px rgba(239, 68, 68, 0.4);
+}
+
+.traffic-circle.amber.glow {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.8), 0 0 40px rgba(245, 158, 11, 0.6), 0 0 60px rgba(245, 158, 11, 0.4);
+}
+
+.traffic-circle.green.glow {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.8), 0 0 40px rgba(34, 197, 94, 0.6), 0 0 60px rgba(34, 197, 94, 0.4);
+}
+
 .cta-content {
     flex: 1;
     opacity: 0;
     transform: translateX(-30px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: 0.3s;
     width: 0;
+    max-width: 0;
     overflow: hidden;
+    visibility: hidden;
+    transition: none;
 }
 
 .traffic-light-cta.expanded .cta-content {
     opacity: 1;
     transform: translateX(0);
     width: auto;
+    max-width: 360px;
+    visibility: visible;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
 }
 
 .cta-content h2 {
@@ -525,6 +557,8 @@ body {
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 6s forwards;
 }
 
 .scroll-cue:hover {
@@ -551,6 +585,40 @@ body {
     animation: bounce 2s infinite;
 }
 
+/* Remembrance Poppy - November Only */
+.remembrance-poppy {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 80px;
+    height: auto;
+    z-index: 10;
+    opacity: 0;
+    display: none;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.remembrance-poppy.show-november {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .remembrance-poppy {
+        width: 60px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .remembrance-poppy {
+        width: 50px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0) rotate(-45deg);
@@ -560,6 +628,63 @@ body {
     }
     60% {
         transform: translateY(-5px) rotate(-45deg);
+    }
+}
+
+/* Hero Animation Keyframes */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.5);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
+
+@keyframes fadeToTransparent {
+    from {
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    to {
+        background: transparent;
+        border: 2px solid transparent;
+        box-shadow: none;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
@@ -1196,12 +1321,11 @@ body {
 
 .royal-british-legion-logo img {
     width: 100%;
-    min-width: 120px;
-    max-width: 200px;
+    min-width: 80px;
+    max-width: 150px;
     height: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
-    border-radius: 8px;
 }
 
 .royal-british-legion-logo img:hover {
