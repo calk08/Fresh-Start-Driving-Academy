@@ -45,9 +45,9 @@ body {
 
 /* Header Styles */
 .header {
-    background: rgba(30, 41, 59, 0.95);
+    background: rgba(253, 254, 255, 0.85);
     backdrop-filter: blur(10px);
-    color: rgba(255, 255, 255, 1);
+    color: white;
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -93,7 +93,7 @@ body {
     font-size: 1.8rem;
     font-weight: bold;
     align-items: center;
-    color: white;
+    color: #1e293b;
 }
 
 .logo-image {
@@ -108,7 +108,7 @@ body {
 }
 
 .nav a {
-    color: white;
+    color: #1e293b;
     text-decoration: none;
     font-weight: 500;
     font-size: 1.1rem;
@@ -124,7 +124,7 @@ body {
     display: none;
     background: none;
     border: none;
-    color: white;
+    color: #1e293b;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.75rem;
@@ -195,7 +195,6 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -2;
-    display: block;
 }
 
 .hero-overlay {
