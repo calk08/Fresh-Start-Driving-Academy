@@ -103,6 +103,126 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2500); // Wait for traffic light to finish sliding in
 });
 
+// Student Images Carousel
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.carousel-track');
+    const images = document.querySelectorAll('.student-image');
+    
+    if (!track || images.length === 0) return;
+    
+    let currentIndex = 0;
+    const totalImages = images.length;
+    let isTransitioning = false;
+    
+    // Clone images multiple times for seamless infinite scroll
+    // Clone three times to ensure smooth continuous looping
+    for (let i = 0; i < 3; i++) {
+        images.forEach(img => {
+            const clone = img.cloneNode(true);
+            track.appendChild(clone);
+        });
+    }
+    
+    const allImages = track.querySelectorAll('.student-image');
+    
+    function updateCarousel(instant = false) {
+        // Calculate transform to center the middle image
+        const imageWidth = allImages[0].offsetWidth;
+        // Dynamically calculate gap from computed styles
+        const computedStyle = window.getComputedStyle(track);
+        const gap = parseInt(computedStyle.gap) || 32;
+        const offset = currentIndex * (imageWidth + gap);
+        
+        if (instant) {
+            // Disable transitions on track AND all images
+            track.style.transition = 'none';
+            allImages.forEach(img => {
+                img.style.transition = 'none';
+            });
+            
+            // Update position - start from left:50%, move left by offset, then center the current image
+            track.style.transform = `translateX(calc(-${offset}px - ${imageWidth / 2}px))`;
+            
+            // Remove all classes first
+            allImages.forEach(img => {
+                img.classList.remove('center', 'side');
+            });
+            
+            // Calculate visible images (current, left, right)
+            const centerIndex = currentIndex;
+            const leftIndex = currentIndex - 1;
+            const rightIndex = currentIndex + 1;
+            
+            // Add classes to visible images
+            if (allImages[centerIndex]) allImages[centerIndex].classList.add('center');
+            if (allImages[leftIndex] && leftIndex >= 0) allImages[leftIndex].classList.add('side');
+            if (allImages[rightIndex]) allImages[rightIndex].classList.add('side');
+            
+            // Force reflow
+            void track.offsetHeight;
+            
+            // Re-enable transitions after a brief delay
+            setTimeout(() => {
+                track.style.transition = 'transform 0.6s ease-in-out';
+                allImages.forEach(img => {
+                    img.style.transition = '';
+                });
+            }, 50);
+        } else {
+            // Remove all classes first
+            allImages.forEach(img => {
+                img.classList.remove('center', 'side');
+            });
+            
+            // Calculate visible images (current, left, right)
+            const centerIndex = currentIndex;
+            const leftIndex = currentIndex - 1;
+            const rightIndex = currentIndex + 1;
+            
+            // Add classes to visible images
+            if (allImages[centerIndex]) allImages[centerIndex].classList.add('center');
+            if (allImages[leftIndex] && leftIndex >= 0) allImages[leftIndex].classList.add('side');
+            if (allImages[rightIndex]) allImages[rightIndex].classList.add('side');
+            
+            // Animate transform - start from left:50%, move left by offset, then center the current image
+            track.style.transform = `translateX(calc(-${offset}px - ${imageWidth / 2}px))`;
+        }
+    }
+    
+    function moveRight() {
+        if (isTransitioning) return;
+        
+        isTransitioning = true;
+        currentIndex++;
+        updateCarousel(false);
+        
+        // After animation completes, check if we need to reset
+        setTimeout(() => {
+            // If we've gone past the second set, reset to equivalent position in middle set
+            if (currentIndex >= totalImages * 2) {
+                // Instantly jump to the equivalent position (first image of middle set)
+                currentIndex = totalImages;
+                updateCarousel(true);
+            }
+            isTransitioning = false;
+        }, 650);
+    }
+    
+    // Initialize carousel - start at the middle set of cloned images
+    currentIndex = totalImages;
+    updateCarousel(true);
+    
+    // Auto-scroll every 3 seconds
+    setInterval(moveRight, 3000);
+    
+    // Update on window resize
+    window.addEventListener('resize', () => {
+        if (!isTransitioning) {
+            updateCarousel(true);
+        }
+    });
+});
+
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
@@ -550,7 +670,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        const reviewsHTML = reviews.slice(0, 3).map(review => `
+        const reviewsHTML = reviews.slice(0, 3).map(review => {
+            const textData = truncateReviewText(review.text);
+            const moreButton = textData.truncated ? 
+                `<span class="review-text-more">... <button class="read-more-btn">more...</button></span><span class="review-text-full" style="display:none;">${textData.fullText} <button class="read-less-btn">back</button></span>` : '';
+            return `
             <div class="review-item">
                 <div class="review-header">
                     <div class="reviewer-info">
@@ -559,11 +683,122 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <span class="review-date">${formatRelativeTime(review.time)}</span>
                 </div>
-                <p class="review-text">"${review.text}"</p>
+                <p class="review-text">
+                    "<span class="review-text-content">${textData.text}</span>${moreButton}"
+                </p>
             </div>
-        `).join('');
+        `;
+        }).join('');
         
         reviewsContainer.innerHTML = reviewsHTML;
+        
+        // Add click handlers using event delegation for "more" and "less" buttons
+        reviewsContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('read-more-btn')) {
+                const reviewText = e.target.closest('.review-text');
+                const truncatedContent = reviewText.querySelector('.review-text-content');
+                const moreSpan = reviewText.querySelector('.review-text-more');
+                const fullText = reviewText.querySelector('.review-text-full');
+                
+                truncatedContent.style.display = 'none';
+                moreSpan.style.display = 'none';
+                fullText.style.display = 'inline';
+            } else if (e.target.classList.contains('read-less-btn')) {
+                const reviewText = e.target.closest('.review-text');
+                const truncatedContent = reviewText.querySelector('.review-text-content');
+                const moreSpan = reviewText.querySelector('.review-text-more');
+                const fullText = reviewText.querySelector('.review-text-full');
+                
+                truncatedContent.style.display = 'inline';
+                moreSpan.style.display = 'inline';
+                fullText.style.display = 'none';
+            }
+        });
+        
+        // Initialize reviews carousel
+        initReviewsCarousel();
+    }
+    
+    // Reviews carousel functionality
+    function initReviewsCarousel() {
+        const reviewsContainer = document.getElementById('google-reviews');
+        const prevBtn = document.querySelector('.review-nav-prev');
+        const nextBtn = document.querySelector('.review-nav-next');
+        
+        if (!reviewsContainer || !prevBtn || !nextBtn) return;
+        
+        const originalItems = Array.from(reviewsContainer.querySelectorAll('.review-item'));
+        if (originalItems.length === 0) return;
+        
+        const totalReviews = originalItems.length;
+        
+        // Clone reviews for infinite loop (prepend and append copies)
+        originalItems.forEach(item => {
+            const cloneBefore = item.cloneNode(true);
+            const cloneAfter = item.cloneNode(true);
+            reviewsContainer.insertBefore(cloneBefore, reviewsContainer.firstChild);
+            reviewsContainer.appendChild(cloneAfter);
+        });
+        
+        let currentIndex = totalReviews; // Start at the first original review
+        let isTransitioning = false;
+        
+        function updateCarousel(instant = false) {
+            const containerWidth = reviewsContainer.parentElement.offsetWidth;
+            const offset = currentIndex * containerWidth;
+            
+            if (instant) {
+                reviewsContainer.style.transition = 'none';
+                reviewsContainer.style.transform = `translateX(-${offset}px)`;
+                // Force reflow
+                void reviewsContainer.offsetHeight;
+                setTimeout(() => {
+                    reviewsContainer.style.transition = 'transform 0.5s ease-in-out';
+                }, 20);
+            } else {
+                reviewsContainer.style.transform = `translateX(-${offset}px)`;
+            }
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
+            currentIndex--;
+            updateCarousel(false);
+            
+            setTimeout(() => {
+                // If we're at the first cloned set, jump to the last original
+                if (currentIndex < totalReviews) {
+                    currentIndex = totalReviews * 2 - 1;
+                    updateCarousel(true);
+                }
+                isTransitioning = false;
+            }, 500);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
+            currentIndex++;
+            updateCarousel(false);
+            
+            setTimeout(() => {
+                // If we're at the last cloned set, jump to the first original
+                if (currentIndex >= totalReviews * 2) {
+                    currentIndex = totalReviews;
+                    updateCarousel(true);
+                }
+                isTransitioning = false;
+            }, 500);
+        });
+        
+        // Initial state
+        updateCarousel(true);
+        
+        // Update on window resize
+        window.addEventListener('resize', () => updateCarousel(true));
     }
     
     // Update rating summary
@@ -746,7 +981,11 @@ function displayReviews(placeData) {
         return;
     }
     
-    const reviewsHTML = reviews.slice(0, 3).map(review => `
+    const reviewsHTML = reviews.slice(0, 3).map(review => {
+        const textData = truncateReviewText(review.text);
+        const moreButton = textData.truncated ? 
+            `<span class="review-text-more">... <button class="read-more-btn">more</button></span><span class="review-text-full" style="display:none;">${textData.fullText} <button class="read-less-btn">&lt;</button></span>` : '';
+        return `
         <div class="review-item">
             <div class="review-header">
                 <div class="reviewer-info">
@@ -755,11 +994,40 @@ function displayReviews(placeData) {
                 </div>
                 <span class="review-date">${formatRelativeTime(review.time)}</span>
             </div>
-            <p class="review-text">"${review.text}"</p>
+            <p class="review-text">
+                "<span class="review-text-content">${textData.text}</span>${moreButton}"
+            </p>
         </div>
-    `).join('');
+    `;
+    }).join('');
     
     reviewsContainer.innerHTML = reviewsHTML;
+    
+    // Add click handlers using event delegation for "more" and "less" buttons
+    reviewsContainer.addEventListener('click', function(e) {
+        if (e.target.classList.contains('read-more-btn')) {
+            const reviewText = e.target.closest('.review-text');
+            const truncatedContent = reviewText.querySelector('.review-text-content');
+            const moreSpan = reviewText.querySelector('.review-text-more');
+            const fullText = reviewText.querySelector('.review-text-full');
+            
+            truncatedContent.style.display = 'none';
+            moreSpan.style.display = 'none';
+            fullText.style.display = 'inline';
+        } else if (e.target.classList.contains('read-less-btn')) {
+            const reviewText = e.target.closest('.review-text');
+            const truncatedContent = reviewText.querySelector('.review-text-content');
+            const moreSpan = reviewText.querySelector('.review-text-more');
+            const fullText = reviewText.querySelector('.review-text-full');
+            
+            truncatedContent.style.display = 'inline';
+            moreSpan.style.display = 'inline';
+            fullText.style.display = 'none';
+        }
+    });
+    
+    // Initialize reviews carousel
+    initReviewsCarousel();
 }
 
 // Function to generate star display
@@ -797,6 +1065,16 @@ function formatRelativeTime(timestamp) {
     } else {
         return diffInMonths === 1 ? '1 month ago' : `${diffInMonths} months ago`;
     }
+}
+
+// Function to truncate review text to 25 words
+function truncateReviewText(text, maxWords = 25) {
+    const words = text.split(' ');
+    if (words.length <= maxWords) {
+        return { truncated: false, text: text };
+    }
+    const truncated = words.slice(0, maxWords).join(' ');
+    return { truncated: true, text: truncated, fullText: text };
 }
 
 // Update rating summary
@@ -1092,4 +1370,300 @@ document.addEventListener('DOMContentLoaded', function() {
     //     
     //     heroObserver.observe(heroSection);
     // }
+});
+
+// Service Modal System
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('serviceModal');
+    const modalBody = modal.querySelector('.modal-body');
+    const closeBtn = modal.querySelector('.modal-close');
+    const serviceCards = document.querySelectorAll('.card[data-service]');
+    
+    // Service content data
+    const serviceContent = {
+        manual: {
+            title: 'Manual Driving Lessons',
+            intro: 'Master the art of manual driving with comprehensive instruction covering all 27 essential driving skills required for safe, confident driving.',
+            sections: [
+                {
+                    heading: 'What You\'ll Learn',
+                    content: `<ul>
+                        <li>Complete mastery of clutch control and gear changes</li>
+                        <li>All 27 official driving skills from the DVSA curriculum</li>
+                        <li>Advanced car control and positioning techniques</li>
+                        <li>Safe observation, signalling and planning</li>
+                        <li>Junctions, roundabouts and pedestrian crossings</li>
+                        <li>Essential manoeuvres including reversing, parking and turning</li>
+                        <li>Different road types: country roads, dual carriageways, and motorway preparation</li>
+                        <li>Driving in various conditions: night driving and adverse weather</li>
+                    </ul>`
+                },
+                {
+                    heading: 'The 27 Essential Driving Skills',
+                    content: `<div class="modal-skills-grid">
+                        <div class="skill-category">
+                            <h4>Basics (Skills 1-4)</h4>
+                            <p>Legal responsibilities, safety checks, cockpit checks and vehicle security</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Control & Positioning (5-7)</h4>
+                            <p>Controls and instruments, moving away safely, stopping and safe positioning</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Observation & Planning (8-13)</h4>
+                            <p>Mirror use, signals, anticipation, speed management, traffic awareness, fuel efficiency</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Junctions & Crossings (14-16)</h4>
+                            <p>Junction navigation, roundabout techniques, pedestrian crossing awareness</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Manoeuvres (17-20)</h4>
+                            <p>Reversing, turning around, parking (parallel, bay, reverse), emergency stops</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Road Types (21-23)</h4>
+                            <p>Country roads, dual carriageways, motorway preparation</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Driving Conditions (24-26)</h4>
+                            <p>Night driving, adverse weather, driving with passengers and loads</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Following Routes (27)</h4>
+                            <p>Independent driving using sat nav and traffic signs</p>
+                        </div>
+                    </div>`
+                },
+                {
+                    heading: 'Why Choose Manual?',
+                    content: `<p>Learning to drive a manual car offers several advantages:</p>
+                    <ul>
+                        <li>Greater vehicle control and understanding of how cars work</li>
+                        <li>More flexibility - you can drive both manual and automatic vehicles</li>
+                        <li>Often more economical to run and maintain</li>
+                        <li>Better for driving in challenging conditions</li>
+                        <li>Increased concentration and engagement with driving</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Our Approach',
+                    content: `<p>At Fresh Start Driving Academy, we combine professional ADI instruction with structured practice. Our specially trained instructors have the experience, knowledge and teaching skills to help you master all 27 skills properly.</p>
+                    <p>We recommend combining regular lessons with supervised practice with family or friends once you reach the appropriate level - students who do this consistently perform better on their driving test.</p>`
+                }
+            ]
+        },
+        intensive: {
+            title: 'Intensive Driving Courses',
+            intro: 'Fast-track your journey to becoming a licensed driver with our concentrated, focused training programs designed to get you test-ready quickly.',
+            sections: [
+                {
+                    heading: 'Course Overview',
+                    content: `<p>Our intensive courses compress weeks of traditional lessons into a concentrated period of focused learning, typically ranging from a few days to two weeks.</p>
+                    <ul>
+                        <li>Accelerated learning schedule with extended daily sessions</li>
+                        <li>Complete coverage of all 27 DVSA driving skills</li>
+                        <li>Structured progression from basics to test standard</li>
+                        <li>Test booking included (subject to availability)</li>
+                        <li>Flexible course durations: 20, 30, or 40-hour options</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Who Is This For?',
+                    content: `<ul>
+                        <li>Complete beginners ready for immersive learning</li>
+                        <li>Learners who have had some lessons but need to pass quickly</li>
+                        <li>People with time constraints (career changes, relocation, etc.)</li>
+                        <li>Those who prefer concentrated focus over weeks of spread-out lessons</li>
+                        <li>Students who learn better with daily repetition and practice</li>
+                    </ul>`
+                },
+                {
+                    heading: 'What\'s Included',
+                    content: `<p>Each intensive course includes:</p>
+                    <ul>
+                        <li>Comprehensive training covering all essential driving skills</li>
+                        <li>Theory test support and guidance (if needed)</li>
+                        <li>Mock driving test before the real assessment</li>
+                        <li>Use of modern, well-maintained vehicles</li>
+                        <li>Professional ADI instruction throughout</li>
+                        <li>Test day vehicle and accompaniment to test center</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Success Factors',
+                    content: `<p>To maximize your chances of success on an intensive course:</p>
+                    <ul>
+                        <li>Ensure you've passed your theory test before starting</li>
+                        <li>Be prepared for long days of concentrated learning</li>
+                        <li>Get plenty of rest between sessions</li>
+                        <li>Stay focused and committed throughout the course</li>
+                        <li>Be ready to learn and adapt quickly</li>
+                    </ul>
+                    <p><strong>Note:</strong> While intensive courses can be highly effective, they require dedication and may not suit everyone's learning style. We'll assess your readiness during the initial consultation.</p>`
+                }
+            ]
+        },
+        refresher: {
+            title: 'Refresher Driving Lessons',
+            intro: 'Regain your confidence and update your driving skills with tailored refresher lessons designed for licensed drivers returning to the road.',
+            sections: [
+                {
+                    heading: 'Who Needs Refresher Lessons?',
+                    content: `<ul>
+                        <li>Drivers who haven't been behind the wheel for months or years</li>
+                        <li>Those who feel anxious or lacking confidence when driving</li>
+                        <li>Drivers relocating to unfamiliar areas or road conditions</li>
+                        <li>People preparing for motorway driving for the first time</li>
+                        <li>Anyone wanting to improve specific skills or overcome bad habits</li>
+                        <li>Older drivers wanting to ensure they maintain safe driving standards</li>
+                    </ul>`
+                },
+                {
+                    heading: 'What We Cover',
+                    content: `<p>Refresher lessons are fully customized to your needs, but commonly include:</p>
+                    <ul>
+                        <li>Confidence building in familiar and new environments</li>
+                        <li>Modern road rule updates and highway code changes</li>
+                        <li>Advanced manoeuvres and parking techniques</li>
+                        <li>Motorway and dual carriageway driving</li>
+                        <li>Night driving and adverse weather conditions</li>
+                        <li>Defensive driving techniques</li>
+                        <li>Navigation and route planning skills</li>
+                        <li>Eco-friendly and fuel-efficient driving</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Flexible Approach',
+                    content: `<p>Every refresher program is tailored to you:</p>
+                    <ul>
+                        <li><strong>Assessment Session:</strong> We start with an evaluation drive to identify areas for improvement</li>
+                        <li><strong>Custom Schedule:</strong> Book single lessons or blocks based on your needs</li>
+                        <li><strong>Your Pace:</strong> Progress at a speed that's comfortable for you</li>
+                        <li><strong>Focus Areas:</strong> Concentrate on specific skills or situations that concern you</li>
+                        <li><strong>Local Knowledge:</strong> Learn routes and areas relevant to your daily driving</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Benefits of Refresher Training',
+                    content: `<ul>
+                        <li>Rebuild confidence and reduce driving anxiety</li>
+                        <li>Learn modern techniques and road rule updates</li>
+                        <li>Develop defensive driving skills for safer journeys</li>
+                        <li>Break bad habits developed over years</li>
+                        <li>Prepare for challenging driving situations</li>
+                        <li>Peace of mind for you and your family</li>
+                    </ul>
+                    <p>Our experienced instructors create a supportive, non-judgmental environment to help you rediscover your driving confidence.</p>`
+                }
+            ]
+        },
+        consulting: {
+            title: 'Driving Consulting Services',
+            intro: 'Expert guidance and personalized consultation to help you navigate the complexities of learning to drive, test preparation, and driving lesson planning.',
+            sections: [
+                {
+                    heading: 'What We Offer',
+                    content: `<ul>
+                        <li>Personalized learning path development based on your goals and experience</li>
+                        <li>Theory test preparation strategies and study plans</li>
+                        <li>Practical test readiness assessments</li>
+                        <li>Guidance on choosing the right lesson type and frequency</li>
+                        <li>Mock test analysis and improvement recommendations</li>
+                        <li>Help understanding DVSA requirements and standards</li>
+                        <li>Advice on managing test anxiety and building confidence</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Who Benefits Most',
+                    content: `<p>Our consulting services are ideal for:</p>
+                    <ul>
+                        <li>Complete beginners unsure where to start</li>
+                        <li>Learners who have failed previous tests and need strategic guidance</li>
+                        <li>People with limited time who need optimized learning plans</li>
+                        <li>Students struggling with specific aspects of driving</li>
+                        <li>Anyone wanting professional advice before committing to lessons</li>
+                        <li>Parents helping their children learn to drive</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Consultation Process',
+                    content: `<p>Our structured approach ensures you get actionable advice:</p>
+                    <ul>
+                        <li><strong>Initial Assessment:</strong> Discuss your goals, experience, and concerns</li>
+                        <li><strong>Skill Evaluation:</strong> If you have experience, we assess your current abilities</li>
+                        <li><strong>Custom Strategy:</strong> Develop a tailored plan to achieve your goals efficiently</li>
+                        <li><strong>Resource Recommendations:</strong> Suggest study materials, practice resources, and tools</li>
+                        <li><strong>Ongoing Support:</strong> Follow-up consultations to track progress and adjust plans</li>
+                    </ul>`
+                },
+                {
+                    heading: 'Why Expert Advice Matters',
+                    content: `<p>Learning to drive is a significant investment of time and money. Professional consulting helps you:</p>
+                    <ul>
+                        <li>Avoid common pitfalls and wasted lessons</li>
+                        <li>Understand realistic timelines for test readiness</li>
+                        <li>Make informed decisions about lesson types and intensity</li>
+                        <li>Identify and address weaknesses early</li>
+                        <li>Maximize the effectiveness of your practice time</li>
+                        <li>Build a structured path from beginner to test pass</li>
+                    </ul>
+                    <p>With 17 years of experience and a 100% pass rate, we know what works and can guide you toward success efficiently.</p>`
+                }
+            ]
+        }
+    };
+    
+    // Open modal when card is clicked
+    serviceCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const serviceType = this.dataset.service;
+            const content = serviceContent[serviceType];
+            
+            if (content) {
+                // Build modal content
+                let html = `
+                    <h2>${content.title}</h2>
+                    <p style="font-size: 1.15rem; color: #334155; margin-bottom: 2rem;">${content.intro}</p>
+                `;
+                
+                content.sections.forEach(section => {
+                    html += `
+                        <h3>${section.heading}</h3>
+                        ${section.content}
+                    `;
+                });
+                
+                html += `
+                    <a href="#contact" class="modal-cta" onclick="document.getElementById('serviceModal').classList.remove('active'); document.body.style.overflow = '';">Book This Service</a>
+                `;
+                
+                modalBody.innerHTML = html;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    // Close modal
+    closeBtn.addEventListener('click', function() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 });

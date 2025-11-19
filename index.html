@@ -38,14 +38,6 @@
       reviewsSection.innerHTML = `
         <h2 class="section-title">What Our Customers Say</h2>
         <div class="google-reviews-container">
-          <div class="google-reviews-widget">
-            <div id="google-reviews" data-place-id="ChIJOR5PO7be-2wRNK-N341tVB0">
-              <div class="reviews-loading">
-                <div class="loading-spinner"></div>
-                <p>Loading Google Reviews...</p>
-              </div>
-            </div>
-          </div>
           <div class="google-rating-summary">
             <div class="rating-display">
               <div class="stars">
@@ -61,6 +53,18 @@
             <a href="https://www.google.com/maps/place/Fresh+Start+Driving+Academy/@52.4012654,-1.5344741,17z/data=!3m1!4b1!4m6!3m5!1s0x6cfbdeb63b4f1e39:0x1d546d8ddf8daf34!8m2!3d52.4012622!4d-1.5318938!16s%2Fg%2F11yhk3cgr1?entry=ttu&g_ep=EgoyMDI1MTAyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="google-link">
               View all reviews on Google
             </a>
+          </div>
+          <div class="google-reviews-widget">
+            <button class="review-nav-btn review-nav-prev" aria-label="Previous reviews">‹</button>
+            <div class="reviews-carousel-container">
+              <div id="google-reviews" data-place-id="ChIJOR5PO7be-2wRNK-N341tVB0">
+                <div class="reviews-loading">
+                  <div class="loading-spinner"></div>
+                  <p>Loading Google Reviews...</p>
+                </div>
+              </div>
+            </div>
+            <button class="review-nav-btn review-nav-next" aria-label="Next reviews">›</button>
           </div>
         </div>
       `;
@@ -132,13 +136,13 @@
     if (locationSection && locationSection.querySelector('.cookie-blocked-content')) {
       locationSection.innerHTML = `
         <h2 class="section-title">Our Location</h2>
-        <p class="section-intro">We provide driving lessons within a 15-mile radius of our location</p>
+        <p class="section-intro">We proudly operate in all areas of Coventry</p>
         <div class="map-container">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492721.8841560716!2d-6.409823487500002!3d52.4012622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6cfbdeb63b4f1e39%3A0x1d546d8ddf8daf34!2sFresh%20Start%20Driving%20Academy!5e0!3m2!1sen!2suk!4v1761170574640!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="service-area">
           <h3 class="section-subtitle">Service Area Coverage</h3>
-          <p>We proudly serve students within a <strong>15-mile radius</strong> of our academy location. This includes surrounding towns, villages, and urban areas to ensure convenient access to quality driving instruction.</p>
+          <p>We proudly operate in <strong>all areas of Coventry</strong>, ensuring convenient access to quality driving instruction throughout the city.</p>
         </div>
       `;
     }
@@ -225,7 +229,7 @@
     <header class="header">
         <div class="container">
             <a href="#home" class="logo-container" aria-label="Fresh Start Driving Academy - Return to homepage" title="Fresh Start Driving Academy Homepage">
-                <img src="images/fresh-start-driving-logo.png" alt="Fresh Start Driving Academy Logo" class="logo-image">
+                <img src="images/fresh-start-driving-logo.webp" alt="Fresh Start Driving Academy Logo" class="logo-image">
                 <div class="logo">Fresh Start Driving Academy</div>
             </a>
             <nav class="nav">
@@ -250,41 +254,17 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop>
-            <source src="video/driving-footage.mp4" type="video/mp4">
-            <source src="video/driving-footage.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
+        <img src="images/car_pic1.webp" alt="Driving" class="hero-video">
         <div class="hero-overlay"></div>
+        <div class="hero-accent-shapes">
+            <div class="accent-shape shape-1"></div>
+            <div class="accent-shape shape-2"></div>
+        </div>
         <div class="container">
-            <h1>Your route to success starts here</h1>
-
-            <div class="features">
-                <div class="traffic-light-container">
-                    <div class="traffic-light-pole">
-                        <div class="traffic-light-cta" data-delay="0">
-                            <div class="traffic-circle red"></div>
-                            <div class="cta-content">
-                                <h2>5 Star Rating</h2>
-                                <p>Rated excellence by our students</p>
-                            </div>
-                        </div>
-                        <div class="traffic-light-cta" data-delay="200">
-                            <div class="traffic-circle amber"></div>
-                            <div class="cta-content">
-                                <h2>Client Centered</h2>
-                                <p>Personalized learning approach</p>
-                            </div>
-                        </div>
-                        <div class="traffic-light-cta" data-delay="400">
-                            <div class="traffic-circle green"></div>
-                            <div class="cta-content">
-                                <h2>Flexible Approach</h2>
-                                <p>Lessons that fit your schedule</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero-content">
+                <h1>Start Your Driving Journey with Confidence</h1>
+                <p class="hero-subtitle">Fresh Start Driving Academy provides expert driving instruction with a focus on safety, confidence, and personalized learning for all skill levels.</p>
+                <a href="#contact" class="hero-cta-btn">Book Your Lesson</a>
             </div>
         </div>
         
@@ -296,7 +276,7 @@
         
         <!-- Remembrance Poppy (November only) -->
         <a href="https://www.britishlegion.org.uk/" target="_blank" rel="noopener noreferrer" aria-label="View Royal British Legion official website" title="Royal British Legion - Support for the Armed Forces community">
-            <img src="images/poppy.png" alt="Remembrance Poppy" class="remembrance-poppy" id="remembrancePoppy">
+            <img src="images/poppy.webp" alt="Remembrance Poppy" class="remembrance-poppy" id="remembrancePoppy">
         </a>
     </section>
 
@@ -304,14 +284,58 @@
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">About Us</h2>
-            <p class="section-intro">At Fresh Start Driving Academy we pride ourselves on empowering Safe, Confident Drivers and we are committed to providing top-quality driver education that emphasizes safety, confidence, and skill. We deliver comprehensive training programs tailored to meet the needs of new drivers, teens, adults, and seniors. Whether you're preparing for your first driving test or looking to refresh your skills, we offer flexible lessons, up-to-date curriculum, and real-world driving experience to help you succeed on the road.</p>
             
-            <div class="student-images">
-                <img src="images/student 1.jpg" alt="Happy student after passing their driving test" class="student-image">
-                <img src="images/student 2.jpg" alt="Successful driving student" class="student-image">
-                <img src="images/student 3.jpg" alt="Confident new driver" class="student-image">
-                <img src="images/student 4.jpg" alt="Proud driving test pass" class="student-image">
-                <img src="images/student 5.jpg" alt="Another successful driving student" class="student-image">
+            <div><p class="students-intro">Here are just a few of our happy students who have successfully passed their driving tests with Fresh Start Driving Academy:</p>
+              </div>
+            <div class="separator-parallelogram"></div>
+            
+            <div class="student-carousel-container">
+                <div class="student-carousel">
+                    <div class="carousel-track">
+                        <img src="images/student 1.webp" alt="Happy student after passing their driving test" class="student-image">
+                        <img src="images/student 2.webp" alt="Successful driving student" class="student-image">
+                        <img src="images/student 3.webp" alt="Confident new driver" class="student-image">
+                        <img src="images/student 4.webp" alt="Proud driving test pass" class="student-image">
+                        <img src="images/student 5.webp" alt="Another successful driving student" class="student-image">
+                    </div>
+                </div>
+            </div>
+
+            <ul class="section-intro about-list">
+                <li>Friendly and expert instruction ensuring safety, confidence, and practical driving skills</li>
+                <li>Reliable learning plans tailored for new drivers, teens, adults, and seniors</li>
+                <li>Empowering safe and confident drivers through top-quality driving education</li>
+                <li>Supportive lessons with up-to-date curriculum for real-world driving experience</li>
+                <li>Helping students pass their driving test and become skilled, independent drivers</li>
+            </ul>
+            
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section" style="background: #f8fafc; padding: 4rem 0;">
+        <div class="container">      
+            <div class="stats-container">
+                <div class="stats-image-wrapper">
+                    <div class="stats">
+                <div class="stat">
+                    <span class="number" data-target="100">0%</span>
+                    <span class="label">Pass Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="number" data-target="17">0</span>
+                    <span class="label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="number" data-target="5">0</span>
+                    <span class="label">Star Rating</span>
+                </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-cta">
+                <p class="stats-cta-text">If you don't believe us, check us out on Google</p>
+                <a href="https://www.google.com/maps/place/Fresh+Start+Driving+Academy/@52.4012654,-1.5344741,17z/data=!3m1!4b1!4m6!3m5!1s0x6cfbdeb63b4f1e39:0x1d546d8ddf8daf34!8m2!3d52.4012622!4d-1.5318938!16s%2Fg%2F11yhk3cgr1?entry=ttu&g_ep=EgoyMDI1MTAyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="stats-google-btn">View Our Google Reviews</a>
             </div>
         </div>
     </section>
@@ -322,37 +346,39 @@
             <h2 class="section-title">Our Services</h2>
             
             <div class="card-grid">
-                <div class="card">
+                <div class="card" data-service="manual">
                     <h3>Manual Lessons</h3>
-                    <p><!-- Add your manual lesson description here --></p>
+                    <p>we offer a comprehensive manual driving lesson program tailored to your individual needs, helping you gain confidence and mastery behind the wheel.</p>
+                    <button class="learn-more-btn">Learn More</button>
                 </div>
                 
-                <div class="card">
-                    <h3>Automatic Lessons</h3>
-                    <p><!-- Add your automatic lesson description here --></p>
-                </div>
-                
-                <div class="card">
+                <div class="card" data-service="intensive">
                     <h3>Intensive Courses</h3>
-                    <p><!-- Add your intensive course description here --></p>
+                    <p>Our intensive courses are designed for those who want to learn quickly and efficiently, providing focused training to help you pass your driving test in a shorter time frame.</p>
+                    <button class="learn-more-btn">Learn More</button>
                 </div>
                 
-                <div class="card">
+                <div class="card" data-service="refresher">
                     <h3>Refresher Lessons</h3>
-                    <p><!-- Add your refresher lesson description here --></p>
+                    <p>Our refresher lessons are perfect for drivers who want to regain confidence and update their skills after a break from driving.</p>
+                    <button class="learn-more-btn">Learn More</button>
                 </div>
-                
-                <div class="card">
-                    <h3>Pass Plus</h3>
-                    <p><!-- Add your Pass Plus description here --></p>
-                </div>
-                
-                <div class="card">
-                    <h3>Mock Tests</h3>
-                    <p><!-- Add your mock test description here --></p>
+                <div class="card" data-service="consulting">
+                  <h3>Driving Consulting</h3>
+                  <p>We provide expert consulting services to help you navigate the complexities of driving tests and lesson planning.</p>
+                  <button class="learn-more-btn">Learn More</button>
                 </div>
             </div>
-        </div>
+            
+            <!-- Service Modal -->
+            <div id="serviceModal" class="service-modal">
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="Close modal">&times;</button>
+                    <div class="modal-body">
+                        <!-- Content will be dynamically inserted -->
+                    </div>
+                </div>
+            </div>
     </section>
 
     <!-- Google Reviews Section -->
@@ -365,28 +391,6 @@
                     <h3>Cookie Consent Required</h3>
                     <p>Please accept marketing cookies to view customer reviews and ratings.</p>
                     <p>This feature requires Google services which need your consent to load.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="section" style="background: #f8fafc; padding: 4rem 0;">
-        <div class="container">
-            <h2 class="section-title" style="color: #16a34a; margin-bottom: 3rem; font-size: 2.5rem;">Our Success</h2>
-            
-            <div class="stats">
-                <div class="stat">
-                    <span class="number" data-target="100">0%</span>
-                    <span class="label">Pass Rate</span>
-                </div>
-                <div class="stat">
-                    <span class="number" data-target="17">0</span>
-                    <span class="label">Years Experience</span>
-                </div>
-                <div class="stat">
-                    <span class="number" data-target="5">0</span>
-                    <span class="label">Star Rating</span>
                 </div>
             </div>
         </div>
@@ -444,7 +448,7 @@
                     <div class="location-alternative">
                         <h4>Our Address:</h4>
                         <p><strong>117 Earlsdon Ave N, Earlsdon, Coventry CV5 6GA</strong></p>
-                        <p>We provide driving lessons within a <strong>15-mile radius</strong> of our academy location. This includes surrounding towns, villages, and urban areas to ensure convenient access to quality driving instruction.</p>
+                        <p>We proudly operate in <strong>all areas of Coventry</strong>, ensuring convenient access to quality driving instruction throughout the city.</p>
                     </div>
                 </div>
             </div>
@@ -457,9 +461,9 @@
             <h2 class="section-title">Follow Us on Social Media</h2>
             <p class="section-intro">Stay connected and get the latest updates from Fresh Start Driving Academy.</p>
             <div class="social-media-links">
-                <a class="facebook" href="https://www.facebook.com/share/1NGdMsJtdQ/" target="_blank" rel="noopener noreferrer"><img src="images/facebook.png" alt="Facebook Logo" class="x-logo"></a>
-                <a class="instagram" href="https://www.instagram.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/Instagram.png" alt="Instagram Logo" class="x-logo"></a>
-                <a class="x" href="https://www.X.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/X.png" alt="X Logo" class="x-logo"></a>
+                <a class="facebook" href="https://www.facebook.com/share/1NGdMsJtdQ/" target="_blank" rel="noopener noreferrer"><img src="images/facebook.webp" alt="Facebook Logo" class="x-logo"></a>
+                <a class="instagram" href="https://www.instagram.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/Instagram.webp" alt="Instagram Logo" class="x-logo"></a>
+                <a class="x" href="https://www.X.com/FreshStartDrivingAcademy" target="_blank" rel="noopener noreferrer"><img src="images/X.webp" alt="X Logo" class="x-logo"></a>
             </div>
         </div>
     </section>
@@ -527,12 +531,12 @@
                 <div class="certification">
                     <div class="adi-certification">
                         <a href="https://www.gov.uk/government/publications/driving-instructor-code-of-practice/approved-driving-instructor-adi-code-of-practice" target="_blank" rel="noopener noreferrer" aria-label="View official ADI Code of Practice on GOV.UK" title="ADI Code of Practice - Official driving instructor standards and guidelines">
-                            <img src="images/adi-code-of-practice-logo.jpg" alt="ADI Code of Practice - Approved Driving Instructor certification logo" class="adi-logo">
+                            <img src="images/adi-code-of-practice-logo.webp" alt="ADI Code of Practice - Approved Driving Instructor certification logo" class="adi-logo">
                         </a>
                     </div>
                     <div class="royal-british-legion-logo">
                         <a href="https://www.britishlegion.org.uk/" target="_blank" rel="noopener noreferrer" aria-label="View Royal British Legion official website" title="Royal British Legion - Support for the Armed Forces community">
-                            <img src="images/Royal_British_Legion_logo.png" alt="Royal British Legion logo" class="royal-british-legion-logo">
+                            <img src="images/Royal_British_Legion_logo.webp" alt="Royal British Legion logo" class="royal-british-legion-logo">
                         </a>
                     </div>
                 </div>
