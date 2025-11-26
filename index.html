@@ -238,7 +238,11 @@
                 <a href="#services" aria-label="View our driving lesson packages and pricing" title="Services - Driving lessons, courses, and pricing">Services</a>
                 <a href="#contact" aria-label="Contact us to book driving lessons" title="Contact - Get in touch to book your driving lessons">Contact</a>
             </nav>
-            <button class="menu-toggle" aria-label="Open navigation menu" title="Open mobile navigation menu">☰</button>
+            <button class="menu-toggle" aria-label="Open navigation menu" title="Open mobile navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </header>
 
@@ -254,9 +258,8 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop>
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/car_pic1.webp">
             <source src="video/driving-footage.mp4" type="video/mp4">
-            <source src="video/driving-footage.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -366,11 +369,6 @@
                     <h3>Refresher Lessons</h3>
                     <p>Our refresher lessons are perfect for drivers who want to regain confidence and update their skills after a break from driving.</p>
                     <button class="learn-more-btn">Learn More</button>
-                </div>
-                <div class="card" data-service="consulting">
-                  <h3>Driving Consulting</h3>
-                  <p>We provide expert consulting services to help you navigate the complexities of driving tests and lesson planning.</p>
-                  <button class="learn-more-btn">Learn More</button>
                 </div>
             </div>
             

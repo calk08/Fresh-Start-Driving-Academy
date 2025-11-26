@@ -29,10 +29,22 @@ function checkNovemberPoppy() {
     }
 }
 
+// Ensure hero video plays immediately
+function initHeroVideo() {
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+        // Force play the video
+        heroVideo.play().catch(error => {
+            console.log('Video autoplay prevented:', error);
+        });
+    }
+}
+
 // Run on load
 document.addEventListener('DOMContentLoaded', function() {
     setHeroHeight();
     checkNovemberPoppy();
+    initHeroVideo();
 });
 
 // Run on resize (handles orientation changes and window resizing)
@@ -231,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', function() {
             nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
     }
     
@@ -239,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             nav.classList.remove('active');
+            menuToggle.classList.remove('active');
         });
     });
     
@@ -246,6 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
             nav.classList.remove('active');
+            menuToggle.classList.remove('active');
         }
     });
 });
@@ -746,6 +761,14 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateCarousel(instant = false) {
             const containerWidth = reviewsContainer.parentElement.offsetWidth;
             const offset = currentIndex * containerWidth;
+            
+            // Force each review item to be exactly the container width
+            const allReviewItems = reviewsContainer.querySelectorAll('.review-item');
+            allReviewItems.forEach(item => {
+                item.style.width = `${containerWidth}px`;
+                item.style.minWidth = `${containerWidth}px`;
+                item.style.maxWidth = `${containerWidth}px`;
+            });
             
             if (instant) {
                 reviewsContainer.style.transition = 'none';
