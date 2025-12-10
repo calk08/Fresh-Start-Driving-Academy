@@ -116,11 +116,84 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Student Images Carousel
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     const track = document.querySelector('.carousel-track');
+    
+    if (!track) return;
+    
+    const imagePath = 'images/student-imgs/';
+    const supportedFormats = ['webp', 'jpg', 'jpeg', 'png'];
+    
+    // Function to check if an image exists
+    function imageExists(url) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
+    }
+    
+    // Function to find an image with any supported format
+    async function findImage(index) {
+        for (const format of supportedFormats) {
+            const url = `${imagePath}student ${index}.${format}`;
+            if (await imageExists(url)) {
+                return url;
+            }
+        }
+        return null;
+    }
+    
+    // Automatically detect all student images
+    async function loadStudentImages() {
+        const loadedImages = [];
+        let index = 1;
+        let consecutiveFailures = 0;
+        const maxConsecutiveFailures = 3; // Stop after 3 missing images in a row
+        
+        while (consecutiveFailures < maxConsecutiveFailures) {
+            const imageUrl = await findImage(index);
+            
+            if (imageUrl) {
+                loadedImages.push({ url: imageUrl, index: index });
+                consecutiveFailures = 0; // Reset on success
+            } else {
+                consecutiveFailures++;
+            }
+            
+            index++;
+            
+            // Safety limit to prevent infinite loops
+            if (index > 100) break;
+        }
+        
+        return loadedImages;
+    }
+    
+    // Load images and build carousel
+    const studentImages = await loadStudentImages();
+    
+    if (studentImages.length === 0) {
+        console.log('No student images found in images/student-imgs/');
+        return;
+    }
+    
+    console.log(`Loaded ${studentImages.length} student images automatically`);
+    
+    // Create image elements
+    studentImages.forEach(({ url, index }) => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `Happy student ${index} after passing their driving test`;
+        img.className = 'student-image';
+        img.loading = 'lazy';
+        track.appendChild(img);
+    });
+    
     const images = document.querySelectorAll('.student-image');
     
-    if (!track || images.length === 0) return;
+    if (images.length === 0) return;
     
     let currentIndex = 0;
     const totalImages = images.length;
