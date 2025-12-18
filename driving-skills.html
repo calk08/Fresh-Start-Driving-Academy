@@ -5,29 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn about the 27 essential driving skills you need to pass your driving test. Fresh Start Driving Academy - Professional driving lessons in Coventry.">
     <title>Driving Skills You Need to Know | Fresh Start Driving Academy</title>
-    <link rel="icon" type="image/png" href="images/fresh-start-driving-logo.png">
+    <link rel="icon" type="image/webp" href="images/fresh-start-driving-logo.webp">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="subpage">
     <!-- Header -->
-    <header class="header subpage-header">
-        <div class="container header-container">
-            <a href="index.html" class="logo-link">
-                <img src="images/fresh-start-driving-logo.png" alt="Fresh Start Driving Academy Logo" class="logo-img">
+    <header class="header">
+        <div class="container">
+            <a href="index.html#home" class="logo-container" aria-label="Fresh Start Driving Academy - Return to homepage" title="Fresh Start Driving Academy Homepage">
+                <img src="images/fresh-start-driving-logo.webp" alt="Fresh Start Driving Academy Logo" class="logo-image">
+                <div class="logo">Fresh Start Driving Academy</div>
             </a>
-            <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <nav class="nav">
+                <a href="index.html#home" aria-label="Go to homepage section" title="Homepage - Learn about Fresh Start Driving Academy">Home</a>
+                <a href="index.html#about" aria-label="Learn about our driving instructors and teaching methods" title="About Us - Meet our qualified driving instructors">About</a>
+                <a href="index.html#services" aria-label="View our driving lesson packages and pricing" title="Services - Driving lessons, courses, and pricing">Services</a>
+                <a href="index.html#contact" aria-label="Contact us to book driving lessons" title="Contact - Get in touch to book your driving lessons">Contact</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Open navigation menu" title="Open mobile navigation menu">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#services">Our Services</a></li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -84,19 +83,39 @@
             <div class="container">
                 <h2 class="section-title">How to Learn Effectively</h2>
                 
-                <div class="advice-grid">
-                    <div class="advice-card">
-                        <div class="advice-icon">🎓</div>
-                        <h3>Learn with a Driving Instructor</h3>
-                        <p>It's unlikely that anyone except an approved driving instructor (ADI) will have the experience, knowledge and training to teach you properly. They're specially trained to help you learn all 27 skills.</p>
-                        <a href="https://www.gov.uk/driving-lessons-learning-to-drive/taking-driving-lessons" target="_blank" rel="noopener noreferrer" class="advice-link">Find out about taking driving lessons →</a>
+                <div class="advice-list">
+                    <div class="advice-item">
+                        <div class="advice-header">
+                            <div class="advice-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                </svg>
+                            </div>
+                            <h3>Learn with a Driving Instructor</h3>
+                        </div>
+                        <div class="advice-body">
+                            <p>It's unlikely that anyone except an approved driving instructor (ADI) will have the experience, knowledge and training to teach you properly. They're specially trained to help you learn all 27 skills.</p>
+                            <a href="https://www.gov.uk/driving-lessons-learning-to-drive/taking-driving-lessons" target="_blank" rel="noopener noreferrer" class="advice-link">Find out about taking driving lessons →</a>
+                        </div>
                     </div>
                     
-                    <div class="advice-card">
-                        <div class="advice-icon">👨‍👩‍👧</div>
-                        <h3>Practise with Family or Friends</h3>
-                        <p>When you're at the right level, it's a good idea to start practising with family or friends between your driving lessons. People who combine extra practice with driving lessons do better when they take their test.</p>
-                        <a href="https://www.gov.uk/driving-lessons-learning-to-drive/practising-with-family-or-friends" target="_blank" rel="noopener noreferrer" class="advice-link">Find out about practising with family or friends →</a>
+                    <div class="advice-item">
+                        <div class="advice-header">
+                            <div class="advice-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <h3>Practise with Family or Friends</h3>
+                        </div>
+                        <div class="advice-body">
+                            <p>When you're at the right level, it's a good idea to start practising with family or friends between your driving lessons. People who combine extra practice with driving lessons do better when they take their test.</p>
+                            <a href="https://www.gov.uk/driving-lessons-learning-to-drive/practising-with-family-or-friends" target="_blank" rel="noopener noreferrer" class="advice-link">Find out about practising with family or friends →</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,60 +128,92 @@
                 <p class="section-intro">The 27 skills you need to learn to become a safe driver are split into 8 groups.</p>
                 
                 <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-number">1-4</div>
-                        <h3>Basics</h3>
-                        <p>Includes legal responsibilities, safety checks, cockpit checks and security.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/basics/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">1-4</div>
+                            <div class="skill-card-content">
+                                <h3>Basics</h3>
+                                <p>Includes legal responsibilities, safety checks, cockpit checks and security.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/basics/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="skill-card">
-                        <div class="skill-number">5-7</div>
-                        <h3>Control and Positioning</h3>
-                        <p>Includes controls and instruments, moving away and stopping, and safe positioning.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/control-and-positioning/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">5-7</div>
+                            <div class="skill-card-content">
+                                <h3>Control and Positioning</h3>
+                                <p>Includes controls and instruments, moving away and stopping, and safe positioning.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/control-and-positioning/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="skill-card">
-                        <div class="skill-number">8-13</div>
-                        <h3>Observation, Signalling and Planning</h3>
-                        <p>Includes mirrors, signals, anticipation and planning, use of speed, other traffic and fuel-efficient driving.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/observation-signalling-and-planning/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">8-13</div>
+                            <div class="skill-card-content">
+                                <h3>Observation, Signalling and Planning</h3>
+                                <p>Includes mirrors, signals, anticipation and planning, use of speed, other traffic and fuel-efficient driving.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/observation-signalling-and-planning/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="skill-card">
-                        <div class="skill-number">14-16</div>
-                        <h3>Junctions, Roundabouts and Crossings</h3>
-                        <p>Includes junctions, roundabouts and pedestrian crossings.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/junctions-roundabouts-and-crossings/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">14-16</div>
+                            <div class="skill-card-content">
+                                <h3>Junctions, Roundabouts and Crossings</h3>
+                                <p>Includes junctions, roundabouts and pedestrian crossings.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/junctions-roundabouts-and-crossings/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="skill-card">
-                        <div class="skill-number">17-20</div>
-                        <h3>Manoeuvres</h3>
-                        <p>Includes reversing, turning the car around, parking and emergency stops.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/manoeuvres/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">17-20</div>
+                            <div class="skill-card-content">
+                                <h3>Manoeuvres</h3>
+                                <p>Includes reversing, turning the car around, parking and emergency stops.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/manoeuvres/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="skill-card">
-                        <div class="skill-number">21-23</div>
-                        <h3>Road Types</h3>
-                        <p>Includes country roads, dual carriageways and motorways.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/road-types/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">21-23</div>
+                            <div class="skill-card-content">
+                                <h3>Road Types</h3>
+                                <p>Includes country roads, dual carriageways and motorways.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/road-types/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="skill-card">
-                        <div class="skill-number">24-26</div>
-                        <h3>Driving Conditions</h3>
-                        <p>Includes driving in the dark, driving in different weather conditions, and driving with passengers and loads.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/driving-conditions/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">24-26</div>
+                            <div class="skill-card-content">
+                                <h3>Driving Conditions</h3>
+                                <p>Includes driving in the dark, driving in different weather conditions, and driving with passengers and loads.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/driving-conditions/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="skill-card">
-                        <div class="skill-number">27</div>
-                        <h3>Following Routes</h3>
-                        <p>Includes independent driving following directions from a sat nav and a series of traffic signs.</p>
-                        <a href="https://readytopass.campaign.gov.uk/driving-skills/following-routes/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                    <div class="skill-card-wrapper">
+                        <div class="skill-card">
+                            <div class="skill-number">27</div>
+                            <div class="skill-card-content">
+                                <h3>Following Routes</h3>
+                                <p>Includes independent driving following directions from a sat nav and a series of traffic signs.</p>
+                                <a href="https://readytopass.campaign.gov.uk/driving-skills/following-routes/" target="_blank" rel="noopener noreferrer" class="skill-link">Learn more →</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,20 +251,31 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-content">
+                
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                        <li><a href="cookies.html">Cookies Policy</a></li>
+                        <li><a href="index.html#home" aria-label="Return to homepage section" title="Homepage - Fresh Start Driving Academy">Home</a></li>
+                        <li><a href="index.html#about" aria-label="Learn about our driving instructors" title="About Us - Meet our qualified team">About</a></li>
+                        <li><a href="index.html#services" aria-label="View driving lesson services and pricing" title="Services - Driving lessons and courses">Services</a></li>
+                        <li><a href="index.html#contact" aria-label="Contact us to book lessons" title="Contact - Get in touch to book driving lessons">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Contact</h3>
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="cookies.html" aria-label="Read our cookies policy" title="Cookies Policy - How we use cookies on this website">Cookies Policy</a></li>
+                        <li><a href="code-of-practice.html" aria-label="Read our professional code of practice" title="Code of Practice - Our professional standards and commitments">Code of Practice</a></li>
+                        <li><a href="#privacy" aria-label="Read our privacy policy" title="Privacy Policy - How we protect your personal information">Privacy Policy</a></li>
+                        <li><a href="#terms" aria-label="Read our terms of service" title="Terms of Service - Service terms and conditions">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><!-- Add your contact information and description here --></p>
                     <ul>
                         <li><a href="tel:+447780707120" aria-label="Call Fresh Start Driving Academy" title="Phone: Call us to book driving lessons">Phone:</a><phone>(+44)07780707120</phone></li>
                         <li><a href="mailto:Dariusm.adi@gmail.com" aria-label="Email Fresh Start Driving Academy" title="Email: Send us a message about driving lessons">Email:</a> <email>Dariusm.adi@gmail.com</email></li>

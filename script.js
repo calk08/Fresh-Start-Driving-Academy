@@ -58,63 +58,6 @@ window.addEventListener('orientationchange', function() {
     setTimeout(setHeroHeight, 100);
 });
 
-// Hero Traffic Light Animation Sequence
-document.addEventListener('DOMContentLoaded', function() {
-    // Wait for traffic light to slide in from bottom (1.5s delay + 1s animation = 2.5s)
-    setTimeout(() => {
-        const trafficLights = document.querySelectorAll('.traffic-light-cta');
-        
-        // Red light glows (2.5s)
-        setTimeout(() => {
-            const redCircle = trafficLights[0].querySelector('.traffic-circle.red');
-            redCircle.classList.add('glow');
-            
-            // Remove glow after animation and start amber (3.3s)
-            setTimeout(() => {
-                redCircle.classList.remove('glow');
-                
-                // Amber light glows
-                const amberCircle = trafficLights[1].querySelector('.traffic-circle.amber');
-                amberCircle.classList.add('glow');
-                
-                // Remove glow after animation and start green (4.1s)
-                setTimeout(() => {
-                    amberCircle.classList.remove('glow');
-                    
-                    // Green light glows
-                    const greenCircle = trafficLights[2].querySelector('.traffic-circle.green');
-                    greenCircle.classList.add('glow');
-                    
-                    // Fade the traffic light pole to clear 0.2s after green starts glowing
-                    const trafficLightPole = document.querySelector('.traffic-light-pole');
-                    setTimeout(() => {
-                        trafficLightPole.classList.add('fade-to-clear');
-                    }, 200); // 0.2s after green starts glowing
-                    
-                    // Remove glow and expand all CTAs (4.9s)
-                    setTimeout(() => {
-                        greenCircle.classList.remove('glow');
-                        
-                        // Expand all CTAs to show text
-                        trafficLights.forEach((cta, index) => {
-                            setTimeout(() => {
-                                cta.classList.add('expanded');
-                                
-                                // Show content with delay
-                                const content = cta.querySelector('.cta-content');
-                                setTimeout(() => {
-                                    content.style.opacity = '1';
-                                    content.style.transform = 'translateX(0)';
-                                }, 100);
-                            }, index * 200); // Stagger the expansion
-                        });
-                    }, 800); // Wait for green glow to complete
-                }, 800); // Wait for amber glow to complete
-            }, 800); // Wait for red glow to complete
-        }, 0); // Start immediately after traffic light appears
-    }, 2500); // Wait for traffic light to finish sliding in
-});
-
 // Student Images Carousel
 document.addEventListener('DOMContentLoaded', async function() {
     const track = document.querySelector('.carousel-track');
@@ -1494,42 +1437,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li>Driving in various conditions: night driving and adverse weather</li>
                     </ul>`
                 },
-                {
-                    heading: 'The 27 Essential Driving Skills',
-                    content: `<div class="modal-skills-grid">
-                        <div class="skill-category">
-                            <h4>Basics (Skills 1-4)</h4>
-                            <p>Legal responsibilities, safety checks, cockpit checks and vehicle security</p>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Control & Positioning (5-7)</h4>
-                            <p>Controls and instruments, moving away safely, stopping and safe positioning</p>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Observation & Planning (8-13)</h4>
-                            <p>Mirror use, signals, anticipation, speed management, traffic awareness, fuel efficiency</p>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Junctions & Crossings (14-16)</h4>
-                            <p>Junction navigation, roundabout techniques, pedestrian crossing awareness</p>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Manoeuvres (17-20)</h4>
-                            <p>Reversing, turning around, parking (parallel, bay, reverse), emergency stops</p>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Road Types (21-23)</h4>
-                            <p>Country roads, dual carriageways, motorway preparation</p>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Driving Conditions (24-26)</h4>
-                            <p>Night driving, adverse weather, driving with passengers and loads</p>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Following Routes (27)</h4>
-                            <p>Independent driving using sat nav and traffic signs</p>
-                        </div>
-                    </div>`
+                {heading: 'Check out the 27 skills you will learn',
+                content: '<p>For a detailed breakdown of the 27 essential driving skills covered in our manual lessons, please visit our <a href="driving-skills.html" target="_blank" rel="noopener noreferrer" class="modal-inline-btn">Driving Skills page</a>.</p>'
                 },
                 {
                     heading: 'Why Choose Manual?',
@@ -1731,11 +1640,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 html += `
-                    <a href="#contact" class="modal-cta" onclick="document.getElementById('serviceModal').classList.remove('active'); document.body.style.overflow = '';">Book This Service</a>
+                    <a href="#contact" class="modal-cta" onclick="document.getElementById('serviceModal').classList.remove('active'); document.body.classList.remove('modal-open'); document.body.style.overflow = '';">Book This Service</a>
                 `;
                 
                 modalBody.innerHTML = html;
                 modal.classList.add('active');
+                document.body.classList.add('modal-open');
                 document.body.style.overflow = 'hidden';
             }
         });
@@ -1744,6 +1654,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close modal
     closeBtn.addEventListener('click', function() {
         modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
         document.body.style.overflow = '';
     });
     
@@ -1751,6 +1662,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
             document.body.style.overflow = '';
         }
     });
@@ -1759,7 +1671,58 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
             document.body.style.overflow = '';
         }
     });
+});
+
+// Skill Cards Shadow Control
+document.addEventListener('DOMContentLoaded', function() {
+    const skillWrappers = document.querySelectorAll('.skill-card-wrapper');
+    
+    if (skillWrappers.length === 0) return;
+    
+    function updateShadows() {
+        const viewportHeight = window.innerHeight;
+        
+        // Find all sticky cards (ones stuck at viewport bottom)
+        const stickyCards = [];
+        
+        skillWrappers.forEach((wrapper, index) => {
+            const rect = wrapper.getBoundingClientRect();
+            // Card is sticky if its bottom is at or near viewport bottom
+            const isSticky = rect.bottom >= viewportHeight - 5;
+            
+            if (isSticky) {
+                stickyCards.push({ wrapper, index });
+            }
+        });
+        
+        // Apply shadows
+        skillWrappers.forEach((wrapper, index) => {
+            const card = wrapper.querySelector('.skill-card');
+            if (!card) return;
+            
+            // Find position in sticky cards array
+            const stickyIndex = stickyCards.findIndex(s => s.index === index);
+            
+            if (stickyIndex === -1) {
+                // Card is NOT sticky (settled in place) - show shadow
+                card.classList.add('shadow-active');
+            } else if (stickyIndex < 2) {
+                // Top 2 sticky cards - show shadow
+                card.classList.add('shadow-active');
+            } else {
+                // Remaining sticky cards (3rd and beyond) - no shadow
+                card.classList.remove('shadow-active');
+            }
+        });
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateShadows, { passive: true });
+    
+    // Initial check
+    updateShadows();
 });
