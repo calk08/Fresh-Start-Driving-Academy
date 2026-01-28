@@ -1132,17 +1132,16 @@ function updateRatingSummary(placeData) {
 
 // Fallback reviews if API fails
 function displayFallbackReviews() {
+    // Instead of showing error message, show the hardcoded reviews
     const reviewsContainer = document.getElementById('google-reviews');
-    if (!reviewsContainer) return;
-    
-    const reviewsHTML = `
-        <div class="reviews-error">
-            <p>Reviews can't load at the moment.</p>
-            <p>Please check back later or view our reviews directly on Google.</p>
-        </div>
-    `;
-    
-    reviewsContainer.innerHTML = reviewsHTML;
+    const fallbackReviews = document.getElementById('fallback-reviews');
+
+    if (reviewsContainer && fallbackReviews) {
+        // Hide the loading/error state and show fallback reviews
+        reviewsContainer.style.display = 'none';
+        fallbackReviews.style.display = 'flex';
+        console.log('Google reviews API failed, showing hardcoded fallback reviews');
+    }
 }
 
 // Contact Form Initialization Function

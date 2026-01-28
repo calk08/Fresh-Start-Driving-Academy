@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Fresh Start Driving Academy in Coventry - Professional driving lessons for manual cars. Expert instructor, flexible scheduling, and competitive rates. Book your driving lesson today!">
     <title>Fresh Start Driving Academy</title>
-    <link rel="icon" type="image/png" href="images/fresh-start-driving-logo.png">
+    <link rel="icon" type="image/webp" href="images/fresh-start-driving-logo.webp">
     <link rel="stylesheet" href="style.css">
     <script>
 // ---- Cookie Consent System (UK GDPR Compliant) ---- //
@@ -132,7 +132,8 @@
       }, 100);
     }
     
-    // Restore Location Section
+    // Restore Location Section - No longer needed since map loads by default
+    /*
     const locationSection = document.querySelector('section[style*="background-color: #f8f9fa"] .container');
     if (locationSection && locationSection.querySelector('.cookie-blocked-content')) {
       locationSection.innerHTML = `
@@ -147,6 +148,7 @@
         </div>
       `;
     }
+    */
     
     // Example: Google Analytics (uncomment and replace YOUR_ID)
     /*
@@ -199,17 +201,30 @@
     };
   }
 
+  // Function to show location alternative if map fails to load
+  function showLocationAlternative() {
+    const mapContainer = document.querySelector('.map-container');
+    const alternative = document.getElementById('locationAlternative');
+    if (mapContainer && alternative) {
+      mapContainer.style.display = 'none';
+      alternative.style.display = 'block';
+    }
+  }
+
   // Check consent status when DOM is ready
   function checkConsent() {
     const savedConsent = getConsentStatus();
     console.log('Cookie consent check - savedConsent value:', savedConsent);
-    
+
+    // Always load Google reviews (no longer behind cookie consent)
+    loadScripts();
+
     if (savedConsent === "accepted") {
-      console.log('Cookies accepted - loading scripts');
-      loadScripts();
+      console.log('Cookies accepted - all features available');
     } else if (savedConsent === "rejected") {
-      console.log('Cookies rejected - banner will not show');
-      // User has explicitly rejected, don't show banner
+      console.log('Cookies rejected - showing banner for other features');
+      // Still show banner for other cookie-dependent features
+      createBanner();
     } else {
       console.log('No cookie preference set - showing banner');
       createBanner();
@@ -237,6 +252,7 @@
                 <a href="#home" aria-label="Go to homepage section" title="Homepage - Learn about Fresh Start Driving Academy">Home</a>
                 <a href="#about" aria-label="Learn about our driving instructors and teaching methods" title="About Us - Meet our qualified driving instructors">About</a>
                 <a href="#services" aria-label="View our driving lesson packages and pricing" title="Services - Driving lessons, courses, and pricing">Services</a>
+                <a href="prices.html" aria-label="View our pricing information" title="Prices - Driving lesson pricing">Prices</a>
                 <a href="#contact" aria-label="Contact us to book driving lessons" title="Contact - Get in touch to book your driving lessons">Contact</a>
             </nav>
             <button class="menu-toggle" aria-label="Open navigation menu" title="Open mobile navigation menu">
@@ -252,6 +268,7 @@
         <h2>Site Navigation</h2>
         <ul>
             <li><a href="index.html">Homepage</a></li>
+            <li><a href="prices.html">Pricing</a></li>
             <li><a href="code-of-practice.html">Code of Practice</a></li>
             <li><a href="cookies.html">Cookies Policy</a></li>
         </ul>
@@ -332,21 +349,21 @@
                     <h3>Manual Lessons</h3>
                     <p>we offer a comprehensive manual driving lesson program tailored to your individual needs, helping you gain confidence and mastery behind the wheel.</p>
                     <button class="learn-more-btn">Learn More</button>
-                    <p class="price">£35</p>
+                    <a href="prices.html" class="price-link" style="color: green; font-size: small;">View Pricing</a>
                   </div>
                 
                 <div class="card" data-service="intensive">
                     <h3>Intensive Courses</h3>
                     <p>Our intensive courses are designed for those who want to learn quickly and efficiently, providing focused training to help you pass your driving test in a shorter time frame.</p>
                     <button class="learn-more-btn">Learn More</button>
-                    <p class="price">£40</p>
+                    <a href="prices.html" class="price-link" style="color: green; font-size: small;">View Pricing</a>
                 </div>
                 
                 <div class="card" data-service="refresher">
                     <h3>Refresher Lessons</h3>
                     <p>Our refresher lessons are perfect for drivers who want to regain confidence and update their skills after a break from driving.</p>
                     <button class="learn-more-btn">Learn More</button>
-                    <p class="price">£37</p>
+                    <a href="prices.html" class="price-link" style="color: green; font-size: small;">View Pricing</a>
                 </div>
             </div>
             
@@ -376,12 +393,83 @@
     <section class="section reviews-section">
         <div class="container">
             <h2 class="section-title">What Our Customers Say</h2>
-            <div class="cookie-blocked-content">
-                <div class="cookie-message">
-                    <div class="cookie-icon">🍪</div>
-                    <h3>Cookie Consent Required</h3>
-                    <p>Please accept marketing cookies to view customer reviews and ratings.</p>
-                    <p>This feature requires Google services which need your consent to load.</p>
+            <div class="google-reviews-container">
+                <div class="google-rating-summary">
+                    <div class="rating-display">
+                        <div class="stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <span class="rating-score">5.0</span>
+                    </div>
+                    <p class="rating-text">Based on Google Reviews</p>
+                    <a href="https://www.google.com/maps/place/Fresh+Start+Driving+Academy/@52.4012654,-1.5344687,17z/data=!4m8!3m7!1s0x6cfbdeb63b4f1e39:0x1d546d8ddf8daf34!8m2!3d52.4012622!4d-1.5318938!9m1!1b1!16s%2Fg%2F11yhk3cgr1?entry=ttu&g_ep=EgoyMDI2MDEyNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="google-link">
+                        View all reviews on Google
+                    </a>
+                </div>
+                <div class="google-reviews-widget">
+                    <button class="review-nav-btn review-nav-prev" aria-label="Previous reviews">‹</button>
+                    <div class="reviews-carousel-container">
+                        <div id="google-reviews" data-place-id="ChIJOR5PO7be-2wRNK-N341tVB0">
+                            <div class="reviews-loading">
+                                <div class="loading-spinner"></div>
+                                <p>Loading Google Reviews...</p>
+                            </div>
+                        </div>
+                        <!-- Fallback hardcoded reviews for SEO and when Google reviews fail to load -->
+                        <div id="fallback-reviews" class="fallback-reviews" style="display: none;">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="review-author">
+                                        <strong>Lauren Richardson-Kellam</strong>
+                                        <div class="review-stars">★★★★★</div>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    "Learning to drive was something I had always been nervous about, but from the very first lesson, Darius helped change the way I felt about being behind the wheel. He created such a calm, encouraging atmosphere that I was able to relax and actually enjoy the process of learning.
+One of the things I appreciated most was how attentive Darius was to my individual needs. If I was struggling with a particular skill, he patiently broke it down step by step until I felt comfortable. Darius pushed me just enough to build my confidence without ever making me feel overwhelmed. His ability to strike that balance made a huge difference in my progress.
+I can honestly say that I wouldn’t have been able to pass  without his patience, professionalism, and encouragement. I would recommend Darius to anyone looking for a driving instructor who truly cares about his students success!"
+                                </div>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="review-author">
+                                        <strong>Patrick Topkin</strong>
+                                        <div class="review-stars">★★★★★</div>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    "Darius is a great instructor, Taught me incredibly well, I passed first time and i would recommend him to anyone looking to get their license!!"
+                                </div>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="review-author">
+                                        <strong>iain</strong>
+                                        <div class="review-stars">★★★★★</div>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    "Darius is a great instructor, he helped to fix all the mistakes I was making and gave me more confidence in my driving."
+                                </div>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="review-author">
+                                        <strong>Safwan Saleh</strong>
+                                        <div class="review-stars">★★★★★</div>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    "Amazing lessons from Darius, he really explains everything so well.Definitely recommend!"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="review-nav-btn review-nav-next" aria-label="Next reviews">›</button>
                 </div>
             </div>
         </div>
@@ -408,9 +496,8 @@
             
             <div class="cookie-blocked-content">
                 <div class="cookie-message">
-                    <div class="cookie-icon">🍪</div>
                     <h3>Cookie Consent Required</h3>
-                    <p>Please accept marketing cookies to use the contact form.</p>
+                    <p>Please accept cookies to use the contact form.</p>
                     <p>This feature requires external services which need your consent to load.</p>
                     <div class="contact-alternative">
                         <h4>Alternative Contact Methods:</h4>
@@ -429,19 +516,18 @@
     <section class="section" style="background-color: #f8f9fa;">
         <div class="container">
             <h2 class="section-title">Our Location</h2>
-            
-            <div class="cookie-blocked-content">
-                <div class="cookie-message">
-                    <div class="cookie-icon">🍪</div>
-                    <h3>Cookie Consent Required</h3>
-                    <p>Please accept marketing cookies to view the interactive map.</p>
-                    <p>This feature requires Google Maps which needs your consent to load.</p>
-                    <div class="location-alternative">
-                        <h4>Our Address:</h4>
-                        <p><strong>117 Earlsdon Ave N, Earlsdon, Coventry CV5 6GA</strong></p>
-                        <p>We proudly operate in <strong>all areas of Coventry</strong>, ensuring convenient access to quality driving instruction throughout the city.</p>
-                    </div>
-                </div>
+            <p class="section-intro">We proudly operate in all areas of Coventry</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492721.8841560716!2d-6.409823487500002!3d52.4012622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6cfbdeb63b4f1e39%3A0x1d546d8ddf8daf34!2sFresh%20Start%20Driving%20Academy!5e0!3m2!1sen!2suk!4v1761170574640!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" onerror="showLocationAlternative()"></iframe>
+            </div>
+            <div class="service-area">
+                <h3 class="section-subtitle">Service Area Coverage</h3>
+                <p>We proudly operate in <strong>all areas of Coventry</strong>, ensuring convenient access to quality driving instruction throughout the city.</p>
+            </div>
+            <div class="location-alternative" id="locationAlternative" style="display: none;">
+                <h4>Our Address:</h4>
+                <p><strong>117 Earlsdon Ave N, Earlsdon, Coventry CV5 6GA</strong></p>
+                <p>We proudly operate in <strong>all areas of Coventry</strong>, ensuring convenient access to quality driving instruction throughout the city.</p>
             </div>
         </div>
     </section>
@@ -472,6 +558,7 @@
                         <li><a href="#home" aria-label="Return to homepage section" title="Homepage - Fresh Start Driving Academy">Home</a></li>
                         <li><a href="#about" aria-label="Learn about our driving instructors" title="About Us - Meet our qualified team">About</a></li>
                         <li><a href="#services" aria-label="View driving lesson services and pricing" title="Services - Driving lessons and courses">Services</a></li>
+                        <li><a href="prices.html" aria-label="View our pricing information" title="Prices - Driving lesson pricing">Prices</a></li>
                         <li><a href="#contact" aria-label="Contact us to book lessons" title="Contact - Get in touch to book driving lessons">Contact</a></li>
                     </ul>
                 </div>
