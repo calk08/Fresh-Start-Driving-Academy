@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://maps.googleapis.com; style-src 'self'; img-src 'self' data: https:; connect-src 'self' https://maps.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta name="description" content="Fresh Start Driving Academy Pricing - Transparent pricing for manual driving lessons, intensive courses, and refresher lessons in Coventry.">
     <title>Pricing - Fresh Start Driving Academy</title>
     <link rel="icon" type="image/webp" href="images/fresh-start-driving-logo.webp">
@@ -38,26 +41,29 @@
             <h1>Our Pricing</h1>
             <p>Transparent, competitive pricing for all our driving services. No hidden costs or surprise fees.</p>
 
-            <div class="card-grid">
-                <div class="card" data-service="manual">
-                    <h3>Manual Lessons</h3>
-                    <p>We offer a comprehensive manual driving lesson program tailored to your individual needs, helping you gain confidence and mastery behind the wheel.</p>
-                    <button class="learn-more-btn">Learn More</button>
-                    <p class="price">£35</p>
+            <div class="price-card-grid">
+                <div class="price-card" data-service="manual">
+                    <div class="card-content">
+                        <h3>Manual Lessons</h3>
+                        <button class="learn-more-btn">Learn More</button>
+                    </div>
+                    <p class="price">from £35/hr</p>
                 </div>
 
-                <div class="card" data-service="intensive">
-                    <h3>Intensive Courses</h3>
-                    <p>Our intensive courses are designed for those who want to learn quickly and efficiently, providing focused training to help you pass your driving test in a shorter time frame.</p>
-                    <button class="learn-more-btn">Learn More</button>
-                    <p class="price">£40</p>
+                <div class="price-card" data-service="intensive">
+                    <div class="card-content">
+                        <h3>Intensive Courses</h3>
+                        <button class="learn-more-btn">Learn More</button>
+                    </div>
+                    <p class="price">from £40/hr</p>
                 </div>
 
-                <div class="card" data-service="refresher">
-                    <h3>Refresher Lessons</h3>
-                    <p>Our refresher lessons are perfect for drivers who want to regain confidence and update their skills after a break from driving.</p>
-                    <button class="learn-more-btn">Learn More</button>
-                    <p class="price">£37</p>
+                <div class="price-card" data-service="refresher">
+                    <div class="card-content">
+                        <h3>Refresher Lessons</h3>
+                        <button class="learn-more-btn">Learn More</button>
+                    </div>
+                    <p class="price">from £37/hr</p>
                 </div>
             </div>
 
