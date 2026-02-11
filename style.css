@@ -1345,6 +1345,13 @@ body.modal-open .header {
     box-shadow: 0 4px 12px var(--rgba-primary-shadow);
 }
 
+.prices-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
 .price {
     font-size: 2rem;
     font-weight: 700;
@@ -1355,6 +1362,7 @@ body.modal-open .header {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: block;
 }
 
 .price-link {
